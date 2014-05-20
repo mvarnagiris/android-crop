@@ -45,12 +45,15 @@ import java.util.concurrent.CountDownLatch;
  */
 public class CropImageActivity extends MonitoredActivity {
 
+    private static final int MAX_TEXTURE_SIZE = 2000;
+    private static final int BUFFER_SIZE = 64 * 1024;
     private static final boolean IN_MEMORY_CROP = Build.VERSION.SDK_INT < Build.VERSION_CODES.GINGERBREAD_MR1;
 
     private final Handler mHandler = new Handler();
 
     private int mAspectX;
     private int mAspectY;
+    private int sampleSize = 1;
 
     // Output image size
     private int mMaxX;
@@ -118,23 +121,43 @@ public class CropImageActivity extends MonitoredActivity {
             mSaveUri = extras.getParcelable(MediaStore.EXTRA_OUTPUT);
         }
 
+        sampleSize = 1;
         mSourceUri = intent.getData();
         if (mSourceUri != null) {
             mExifRotation = CropUtil.getExifRotation(CropUtil.getFromMediaUri(getContentResolver(), mSourceUri));
-
-            InputStream is = null;
             try {
-                is = getContentResolver().openInputStream(mSourceUri);
-                mRotateBitmap = new RotateBitmap(BitmapFactory.decodeStream(is), mExifRotation);
-            } catch (IOException e) {
-                Log.e("Error reading picture: " + e.getMessage(), e);
-                setResultException(e);
+                mRotateBitmap = loadInSampleSize();
+            } catch (IOException ioe) {
+                setResultException(ioe);
             } catch (OutOfMemoryError e) {
-                Log.e("OOM while reading picture: " + e.getMessage(), e);
                 setResultException(e);
-            } finally{
-                CropUtil.closeSilently(is);
             }
+        }
+    }
+
+    private RotateBitmap loadInSampleSize() throws IOException {
+        InputStream is = null;
+        try {
+            is = getContentResolver().openInputStream( mSourceUri );
+            final BitmapFactory.Options o = new BitmapFactory.Options();
+            o.inSampleSize = sampleSize;
+            Bitmap b = BitmapFactory.decodeStream( is, null, o );
+            if(b == null || b.getWidth() > MAX_TEXTURE_SIZE || b.getHeight() > MAX_TEXTURE_SIZE) {
+                if(b != null) {
+                    b.recycle();
+                }
+                throw new OutOfMemoryError( );
+            }
+            return new RotateBitmap(b, mExifRotation );
+        } catch (OutOfMemoryError oom) {
+            if(sampleSize == 16) {
+                throw oom;
+            } else {
+                sampleSize = sampleSize*2;
+                return loadInSampleSize();
+            }
+        } finally {
+            CropUtil.closeSilently(is);
         }
     }
 
@@ -238,9 +261,12 @@ public class CropImageActivity extends MonitoredActivity {
                 outHeight = (int) ((float) mMaxX / ratio + .5f);
             }
         }
-
         if (IN_MEMORY_CROP && mRotateBitmap != null) {
-            croppedImage = inMemoryCrop(mRotateBitmap, croppedImage, r, width, height, outWidth, outHeight);
+            croppedImage = inMemoryCrop(mRotateBitmap, croppedImage, r,
+                                        width*sampleSize,
+                                        height*sampleSize,
+                                        outWidth*sampleSize,
+                                        outHeight*sampleSize);
             if (croppedImage != null) {
                 mImageView.setImageBitmapResetBase(croppedImage, true);
                 mImageView.center(true, true);
@@ -301,18 +327,23 @@ public class CropImageActivity extends MonitoredActivity {
 
                 // Adjust to account for origin at 0,0
                 adjusted.offset(adjusted.left < 0 ? width : 0, adjusted.top < 0 ? height : 0);
-                rect = new Rect((int) adjusted.left, (int) adjusted.top, (int) adjusted.right, (int) adjusted.bottom);
             }
 
+            rect = new Rect((int) rect.left*sampleSize,
+                            (int) rect.top*sampleSize,
+                            (int) rect.right*sampleSize,
+                            (int) rect.bottom*sampleSize);
+            final BitmapFactory.Options o = new BitmapFactory.Options();
+            o.inSampleSize = sampleSize;
             try {
-                croppedImage = decoder.decodeRegion(rect, new BitmapFactory.Options());
-
+                croppedImage = decoder.decodeRegion( rect, o );
+            } catch (OutOfMemoryError oom) {
+                setResultException( oom );
             } catch (IllegalArgumentException e) {
                 // Rethrow with some extra information
                 throw new IllegalArgumentException("Rectangle " + rect + " is outside of the image ("
                         + width + "," + height + "," + mExifRotation + ")", e);
             }
-
         } catch (IOException e) {
             Log.e("Error cropping picture: " + e.getMessage(), e);
             finish();
