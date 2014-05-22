@@ -10,8 +10,17 @@ import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
 import android.widget.Toast;
+import android.os.Parcelable;
+import android.os.Environment;
+import android.content.pm.PackageManager;
+
+import android.provider.MediaStore;
 
 import com.soundcloud.android.crop.util.VisibleForTesting;
+
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Builder for crop Intents and utils for handling result
@@ -135,13 +144,29 @@ public class Crop {
      *
      * @param activity Activity that will receive result
      */
-    public static void pickImage(Activity activity) {
-        Intent intent = new Intent(Intent.ACTION_GET_CONTENT).setType("image/*");
+    public static Uri pickImage(Activity activity) {
+        Intent intent = new Intent(Intent.ACTION_PICK).setType("image/*");
+        Intent chooserIntent = Intent.createChooser( intent, null );
+
+        File file = createImageFile( activity );
+        Uri uri = Uri.fromFile( file );
+
+        Intent takePictureIntent = new Intent( MediaStore.ACTION_IMAGE_CAPTURE ).putExtra( MediaStore.EXTRA_OUTPUT, uri );
+        Parcelable[] additionalIntents = {takePictureIntent};
+        chooserIntent.putExtra( Intent.EXTRA_INITIAL_INTENTS, additionalIntents );
         try {
-            activity.startActivityForResult(intent, REQUEST_PICK);
+            activity.startActivityForResult(chooserIntent, REQUEST_PICK);
         } catch (ActivityNotFoundException e) {
             Toast.makeText(activity, R.string.crop__pick_error, Toast.LENGTH_SHORT).show();
         }
+        return uri;
     }
 
+
+    private static File createImageFile(Activity activity) {
+        String timeStamp = new SimpleDateFormat( "yyyyMMdd_HHmmss" ).format( new Date() );
+        String imageFileName = timeStamp + ".jpg";
+        File path = activity.getExternalFilesDir( Environment.DIRECTORY_PICTURES );
+        return new File( path, imageFileName );
+    }
 }

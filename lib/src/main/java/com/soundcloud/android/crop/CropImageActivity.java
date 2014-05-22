@@ -244,7 +244,6 @@ public class CropImageActivity extends MonitoredActivity {
             return;
         }
         mIsSaving = true;
-
         Bitmap croppedImage = null;
         Rect r = mCrop.getCropRect();
         int width = r.width();
@@ -290,16 +289,14 @@ public class CropImageActivity extends MonitoredActivity {
         saveImage(croppedImage);
     }
 
-    private void saveImage(Bitmap croppedImage) {
+    private void saveImage(final Bitmap croppedImage) {
         if (croppedImage != null) {
-            final Bitmap b = croppedImage;
             CropUtil.startBackgroundJob(this, null, getResources().getString(R.string.crop__saving),
                     new Runnable() {
                         public void run() {
-                            saveOutput(b);
+                            saveOutput(croppedImage);
                         }
-                    }, mHandler
-            );
+                    }, mHandler );
         } else {
             finish();
         }
@@ -321,18 +318,25 @@ public class CropImageActivity extends MonitoredActivity {
                 // Adjust crop area to account for image rotation
                 Matrix matrix = new Matrix();
                 matrix.setRotate(-mExifRotation);
-
+                rect = new Rect((int) rect.left*sampleSize,
+                                (int) rect.top*sampleSize,
+                                (int) rect.right*sampleSize,
+                                (int) rect.bottom*sampleSize);
                 RectF adjusted = new RectF();
                 matrix.mapRect(adjusted, new RectF(rect));
-
                 // Adjust to account for origin at 0,0
                 adjusted.offset(adjusted.left < 0 ? width : 0, adjusted.top < 0 ? height : 0);
+                rect = new Rect((int) adjusted.left,
+                                (int) adjusted.top,
+                                (int) adjusted.right,
+                                (int) adjusted.bottom);
+            } else {
+                rect = new Rect((int) rect.left*sampleSize,
+                                (int) rect.top*sampleSize,
+                                (int) rect.right*sampleSize,
+                                (int) rect.bottom*sampleSize);
             }
 
-            rect = new Rect((int) rect.left*sampleSize,
-                            (int) rect.top*sampleSize,
-                            (int) rect.right*sampleSize,
-                            (int) rect.bottom*sampleSize);
             final BitmapFactory.Options o = new BitmapFactory.Options();
             o.inSampleSize = sampleSize;
             try {
@@ -388,13 +392,21 @@ public class CropImageActivity extends MonitoredActivity {
         System.gc();
     }
 
-    private void saveOutput(Bitmap croppedImage) {
+    private void saveOutput(final Bitmap croppedImage) {
         if (mSaveUri != null) {
             OutputStream outputStream = null;
             try {
                 outputStream = getContentResolver().openOutputStream(mSaveUri);
                 if (outputStream != null) {
-                    croppedImage.compress(Bitmap.CompressFormat.JPEG, 90, outputStream);
+                    if(mExifRotation != 0) {
+                        Matrix matrix = new Matrix();
+                        matrix.postRotate( mExifRotation );
+                        Bitmap rotated = Bitmap.createBitmap( croppedImage, 0, 0, croppedImage.getWidth(),
+                                                              croppedImage.getHeight(), matrix, true );
+                        rotated.compress( Bitmap.CompressFormat.JPEG, 90, outputStream );
+                    } else {
+                        croppedImage.compress( Bitmap.CompressFormat.JPEG, 90, outputStream );
+                    }
                 }
 
             } catch (IOException e) {
@@ -403,26 +415,14 @@ public class CropImageActivity extends MonitoredActivity {
             } finally {
                 CropUtil.closeSilently(outputStream);
             }
-
-            if (!IN_MEMORY_CROP){
-                // In-memory crop negates the rotation
-                CropUtil.copyExifRotation(
-                        CropUtil.getFromMediaUri(getContentResolver(), mSourceUri),
-                        CropUtil.getFromMediaUri(getContentResolver(), mSaveUri)
-                );
-            }
-
-            setResultUri(mSaveUri);
+            setResultUri( mSaveUri );
         }
-
-        final Bitmap b = croppedImage;
         mHandler.post(new Runnable() {
             public void run() {
                 mImageView.clear();
-                b.recycle();
+                croppedImage.recycle();
             }
         });
-
         finish();
     }
 

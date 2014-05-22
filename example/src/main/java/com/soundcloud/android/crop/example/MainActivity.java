@@ -17,6 +17,8 @@ import java.io.File;
 public class MainActivity extends Activity {
 
     private ImageView resultView;
+    private Uri initialUri;
+    private Uri outputUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +37,7 @@ public class MainActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_select) {
             resultView.setImageDrawable(null);
-            Crop.pickImage(this);
+            initialUri = Crop.pickImage(this);
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -44,14 +46,17 @@ public class MainActivity extends Activity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent result) {
         if (requestCode == Crop.REQUEST_PICK && resultCode == RESULT_OK) {
-            beginCrop(result.getData());
+            if (result != null && result.getData() != null) {
+                initialUri = result.getData();
+            }
+            beginCrop(initialUri);
         } else if (requestCode == Crop.REQUEST_CROP) {
             handleCrop(resultCode, result);
         }
     }
 
     private void beginCrop(Uri source) {
-        Uri outputUri = Uri.fromFile(new File(getCacheDir(), "cropped"));
+        outputUri = Uri.fromFile(new File(getCacheDir(), "cropped"));
         new Crop(source).output(outputUri).asSquare().start(this);
     }
 
