@@ -286,10 +286,25 @@ public class CropImageActivity extends MonitoredActivity {
                 mImageView.mHighlightViews.clear();
             }
         }
+        if(croppedImage.getWidth() > mMaxX || croppedImage.getHeight() > mMaxY) {
+            croppedImage = getResizedBitmap(croppedImage, mMaxX, mMaxY);
+        }
+
         saveImage(croppedImage);
     }
 
+    private Bitmap getResizedBitmap(Bitmap bm, int newHeight, int newWidth) {
+        int width = bm.getWidth();
+        int height = bm.getHeight();
+        float scaleWidth = ((float) newWidth) / width;
+        float scaleHeight = ((float) newHeight) / height;
+        Matrix matrix = new Matrix();
+        matrix.postScale(scaleWidth, scaleHeight);
+        return Bitmap.createBitmap(bm, 0, 0, width, height, matrix, false);
+    }
+
     private void saveImage(final Bitmap croppedImage) {
+
         if (croppedImage != null) {
             CropUtil.startBackgroundJob(this, null, getResources().getString(R.string.crop__saving),
                     new Runnable() {

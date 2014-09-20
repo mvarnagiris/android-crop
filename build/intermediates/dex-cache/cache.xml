@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<pre-dex-items>
+
+    <item
+        dex="/Users/luigi/dev/prj/com.luigiagosti/android-crop/example/build/intermediates/pre-dexed/debug/classes-2322d67068df3d397bf7de6ef1154f5f862f5146.jar"
+        jar="/Users/luigi/dev/prj/com.luigiagosti/android-crop/example/build/intermediates/exploded-aar/com.soundcloud.android/lib/0.9.8.1/classes.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="935c7b32e6030a37c7142f48949ebd9fed37f6e1"/>
+
+</pre-dex-items>

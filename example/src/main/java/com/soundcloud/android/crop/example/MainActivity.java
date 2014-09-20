@@ -57,7 +57,7 @@ public class MainActivity extends Activity {
 
     private void beginCrop(Uri source) {
         outputUri = Uri.fromFile(new File(getCacheDir(), "cropped"));
-        new Crop(source).output(outputUri).asSquare().start(this);
+        new Crop(source).output(outputUri).withMaxSize(200, 200).asSquare().start(this);
     }
 
     private void handleCrop(int resultCode, Intent result) {
