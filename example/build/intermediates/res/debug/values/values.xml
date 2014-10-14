@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:ns1="http://schemas.android.com/tools">
 
-    <!-- From: file:/Users/akshay/Projects/android-crop/example/build/intermediates/exploded-aar/com.soundcloud.android/lib/0.9.10/res/values/values.xml -->
+    <!-- From: file:/Users/akshay/Projects/Depop/android-crop/example/build/intermediates/exploded-aar/com.soundcloud.android/lib/0.9.10/res/values/values.xml -->
     <eat-comment />
 
     <attr name="cropImageStyle" format="reference" />
@@ -10,11 +10,11 @@
     <color name="crop__button_text">#666666</color>
     <color name="crop__selector_focused">#77000000</color>
     <color name="crop__selector_pressed">#1a000000</color>
-    <!-- From: file:/Users/akshay/Projects/android-crop/example/src/main/res/values/colors.xml -->
+    <!-- From: file:/Users/akshay/Projects/Depop/android-crop/example/src/main/res/values/colors.xml -->
     <eat-comment />
 
     <color name="highlight">#f3f3f3</color>
-    <!-- From: file:/Users/akshay/Projects/android-crop/example/build/intermediates/exploded-aar/com.soundcloud.android/lib/0.9.10/res/values/values.xml -->
+    <!-- From: file:/Users/akshay/Projects/Depop/android-crop/example/build/intermediates/exploded-aar/com.soundcloud.android/lib/0.9.10/res/values/values.xml -->
     <eat-comment />
 
     <declare-styleable name="CropImageView">
@@ -28,12 +28,12 @@
     </declare-styleable>
 
     <dimen name="crop__bar_height">48dp</dimen>
-    <!-- From: file:/Users/akshay/Projects/android-crop/example/src/main/res/values/strings.xml -->
+    <!-- From: file:/Users/akshay/Projects/Depop/android-crop/example/src/main/res/values/strings.xml -->
     <eat-comment />
 
     <string name="action_select">Select</string>
     <string name="app_name">Crop Demo</string>
-    <!-- From: file:/Users/akshay/Projects/android-crop/example/build/intermediates/exploded-aar/com.soundcloud.android/lib/0.9.10/res/values/values.xml -->
+    <!-- From: file:/Users/akshay/Projects/Depop/android-crop/example/build/intermediates/exploded-aar/com.soundcloud.android/lib/0.9.10/res/values/values.xml -->
     <eat-comment />
 
     <string name="crop__cancel" ns1:ignore="ButtonCase">CANCEL</string>
@@ -82,7 +82,7 @@
         <item name="android:dividerPadding" ns1:ignore="NewApi">12dp</item>
         <item name="android:background">@color/crop__button_bar</item>
     </style>
-    <!-- From: file:/Users/akshay/Projects/android-crop/example/src/main/res/values/theme.xml -->
+    <!-- From: file:/Users/akshay/Projects/Depop/android-crop/example/src/main/res/values/theme.xml -->
     <eat-comment />
 
     <style name="CustomTheme" parent="android:Theme.DeviceDefault" ns1:ignore="NewApi">

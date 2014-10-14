@@ -2,10 +2,10 @@
 <merger version="2" >
 
     <dataSet config="main" >
-        <source path="/Users/akshay/Projects/android-crop/lib/src/main/assets" />
+        <source path="/Users/akshay/Projects/Depop/android-crop/lib/src/main/assets" />
     </dataSet>
     <dataSet config="release" >
-        <source path="/Users/akshay/Projects/android-crop/lib/src/release/assets" />
+        <source path="/Users/akshay/Projects/Depop/android-crop/lib/src/release/assets" />
     </dataSet>
 
 </merger>

@@ -16,4 +16,4 @@
         android:background="@drawable/crop__texture"
         android:layout_below="@id/done_cancel_bar" />
 
-</RelativeLayout><!-- From: file:/Users/akshay/Projects/android-crop/lib/src/main/res/layout/crop__activity_crop.xml --><!-- From: file:/Users/akshay/Projects/android-crop/example/build/intermediates/exploded-aar/com.soundcloud.android/lib/0.9.10/res/layout/crop__activity_crop.xml -->
+</RelativeLayout><!-- From: file:/Users/akshay/Projects/Depop/android-crop/lib/src/main/res/layout/crop__activity_crop.xml --><!-- From: file:/Users/akshay/Projects/Depop/android-crop/example/build/intermediates/exploded-aar/com.soundcloud.android/lib/0.9.10/res/layout/crop__activity_crop.xml -->

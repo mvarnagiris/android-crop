@@ -4,79 +4,79 @@
     xmlns:ns1="http://schemas.android.com/tools" >
 
     <dataSet config="0.9.10" >
-        <source path="/Users/akshay/Projects/android-crop/example/build/intermediates/exploded-aar/com.soundcloud.android/lib/0.9.10/res" >
+        <source path="/Users/akshay/Projects/Depop/android-crop/example/build/intermediates/exploded-aar/com.soundcloud.android/lib/0.9.10/res" >
             <file
                 name="crop__selectable_background"
-                path="/Users/akshay/Projects/android-crop/example/build/intermediates/exploded-aar/com.soundcloud.android/lib/0.9.10/res/drawable/crop__selectable_background.xml"
+                path="/Users/akshay/Projects/Depop/android-crop/example/build/intermediates/exploded-aar/com.soundcloud.android/lib/0.9.10/res/drawable/crop__selectable_background.xml"
                 qualifiers=""
                 type="drawable" />
             <file
                 name="crop__texture"
-                path="/Users/akshay/Projects/android-crop/example/build/intermediates/exploded-aar/com.soundcloud.android/lib/0.9.10/res/drawable/crop__texture.xml"
+                path="/Users/akshay/Projects/Depop/android-crop/example/build/intermediates/exploded-aar/com.soundcloud.android/lib/0.9.10/res/drawable/crop__texture.xml"
                 qualifiers=""
                 type="drawable" />
             <file
                 name="crop__divider"
-                path="/Users/akshay/Projects/android-crop/example/build/intermediates/exploded-aar/com.soundcloud.android/lib/0.9.10/res/drawable-hdpi-v4/crop__divider.9.png"
+                path="/Users/akshay/Projects/Depop/android-crop/example/build/intermediates/exploded-aar/com.soundcloud.android/lib/0.9.10/res/drawable-hdpi-v4/crop__divider.9.png"
                 qualifiers="hdpi-v4"
                 type="drawable" />
             <file
                 name="crop__ic_cancel"
-                path="/Users/akshay/Projects/android-crop/example/build/intermediates/exploded-aar/com.soundcloud.android/lib/0.9.10/res/drawable-hdpi-v4/crop__ic_cancel.png"
+                path="/Users/akshay/Projects/Depop/android-crop/example/build/intermediates/exploded-aar/com.soundcloud.android/lib/0.9.10/res/drawable-hdpi-v4/crop__ic_cancel.png"
                 qualifiers="hdpi-v4"
                 type="drawable" />
             <file
                 name="crop__ic_done"
-                path="/Users/akshay/Projects/android-crop/example/build/intermediates/exploded-aar/com.soundcloud.android/lib/0.9.10/res/drawable-hdpi-v4/crop__ic_done.png"
+                path="/Users/akshay/Projects/Depop/android-crop/example/build/intermediates/exploded-aar/com.soundcloud.android/lib/0.9.10/res/drawable-hdpi-v4/crop__ic_done.png"
                 qualifiers="hdpi-v4"
                 type="drawable" />
             <file
                 name="crop__divider"
-                path="/Users/akshay/Projects/android-crop/example/build/intermediates/exploded-aar/com.soundcloud.android/lib/0.9.10/res/drawable-mdpi-v4/crop__divider.9.png"
+                path="/Users/akshay/Projects/Depop/android-crop/example/build/intermediates/exploded-aar/com.soundcloud.android/lib/0.9.10/res/drawable-mdpi-v4/crop__divider.9.png"
                 qualifiers="mdpi-v4"
                 type="drawable" />
             <file
                 name="crop__ic_cancel"
-                path="/Users/akshay/Projects/android-crop/example/build/intermediates/exploded-aar/com.soundcloud.android/lib/0.9.10/res/drawable-mdpi-v4/crop__ic_cancel.png"
+                path="/Users/akshay/Projects/Depop/android-crop/example/build/intermediates/exploded-aar/com.soundcloud.android/lib/0.9.10/res/drawable-mdpi-v4/crop__ic_cancel.png"
                 qualifiers="mdpi-v4"
                 type="drawable" />
             <file
                 name="crop__ic_done"
-                path="/Users/akshay/Projects/android-crop/example/build/intermediates/exploded-aar/com.soundcloud.android/lib/0.9.10/res/drawable-mdpi-v4/crop__ic_done.png"
+                path="/Users/akshay/Projects/Depop/android-crop/example/build/intermediates/exploded-aar/com.soundcloud.android/lib/0.9.10/res/drawable-mdpi-v4/crop__ic_done.png"
                 qualifiers="mdpi-v4"
                 type="drawable" />
             <file
                 name="crop__divider"
-                path="/Users/akshay/Projects/android-crop/example/build/intermediates/exploded-aar/com.soundcloud.android/lib/0.9.10/res/drawable-xhdpi-v4/crop__divider.9.png"
+                path="/Users/akshay/Projects/Depop/android-crop/example/build/intermediates/exploded-aar/com.soundcloud.android/lib/0.9.10/res/drawable-xhdpi-v4/crop__divider.9.png"
                 qualifiers="xhdpi-v4"
                 type="drawable" />
             <file
                 name="crop__ic_cancel"
-                path="/Users/akshay/Projects/android-crop/example/build/intermediates/exploded-aar/com.soundcloud.android/lib/0.9.10/res/drawable-xhdpi-v4/crop__ic_cancel.png"
+                path="/Users/akshay/Projects/Depop/android-crop/example/build/intermediates/exploded-aar/com.soundcloud.android/lib/0.9.10/res/drawable-xhdpi-v4/crop__ic_cancel.png"
                 qualifiers="xhdpi-v4"
                 type="drawable" />
             <file
                 name="crop__ic_done"
-                path="/Users/akshay/Projects/android-crop/example/build/intermediates/exploded-aar/com.soundcloud.android/lib/0.9.10/res/drawable-xhdpi-v4/crop__ic_done.png"
+                path="/Users/akshay/Projects/Depop/android-crop/example/build/intermediates/exploded-aar/com.soundcloud.android/lib/0.9.10/res/drawable-xhdpi-v4/crop__ic_done.png"
                 qualifiers="xhdpi-v4"
                 type="drawable" />
             <file
                 name="crop__tile"
-                path="/Users/akshay/Projects/android-crop/example/build/intermediates/exploded-aar/com.soundcloud.android/lib/0.9.10/res/drawable-xhdpi-v4/crop__tile.png"
+                path="/Users/akshay/Projects/Depop/android-crop/example/build/intermediates/exploded-aar/com.soundcloud.android/lib/0.9.10/res/drawable-xhdpi-v4/crop__tile.png"
                 qualifiers="xhdpi-v4"
                 type="drawable" />
             <file
                 name="crop__activity_crop"
-                path="/Users/akshay/Projects/android-crop/example/build/intermediates/exploded-aar/com.soundcloud.android/lib/0.9.10/res/layout/crop__activity_crop.xml"
+                path="/Users/akshay/Projects/Depop/android-crop/example/build/intermediates/exploded-aar/com.soundcloud.android/lib/0.9.10/res/layout/crop__activity_crop.xml"
                 qualifiers=""
                 type="layout" />
             <file
                 name="crop__layout_done_cancel"
-                path="/Users/akshay/Projects/android-crop/example/build/intermediates/exploded-aar/com.soundcloud.android/lib/0.9.10/res/layout/crop__layout_done_cancel.xml"
+                path="/Users/akshay/Projects/Depop/android-crop/example/build/intermediates/exploded-aar/com.soundcloud.android/lib/0.9.10/res/layout/crop__layout_done_cancel.xml"
                 qualifiers=""
                 type="layout" />
             <file
-                path="/Users/akshay/Projects/android-crop/example/build/intermediates/exploded-aar/com.soundcloud.android/lib/0.9.10/res/values/values.xml"
+                path="/Users/akshay/Projects/Depop/android-crop/example/build/intermediates/exploded-aar/com.soundcloud.android/lib/0.9.10/res/values/values.xml"
                 qualifiers="" >
                 <string
                     name="crop__cancel"
@@ -226,19 +226,19 @@ match_parent
                 </string>
             </file>
             <file
-                path="/Users/akshay/Projects/android-crop/example/build/intermediates/exploded-aar/com.soundcloud.android/lib/0.9.10/res/values-land/values.xml"
+                path="/Users/akshay/Projects/Depop/android-crop/example/build/intermediates/exploded-aar/com.soundcloud.android/lib/0.9.10/res/values-land/values.xml"
                 qualifiers="land" >
                 <dimen name="crop__bar_height" >40dp
                 </dimen>
             </file>
             <file
-                path="/Users/akshay/Projects/android-crop/example/build/intermediates/exploded-aar/com.soundcloud.android/lib/0.9.10/res/values-large-land-v4/values.xml"
+                path="/Users/akshay/Projects/Depop/android-crop/example/build/intermediates/exploded-aar/com.soundcloud.android/lib/0.9.10/res/values-large-land-v4/values.xml"
                 qualifiers="large-land-v4" >
                 <dimen name="crop__bar_height" >56dp
                 </dimen>
             </file>
             <file
-                path="/Users/akshay/Projects/android-crop/example/build/intermediates/exploded-aar/com.soundcloud.android/lib/0.9.10/res/values-large-v4/values.xml"
+                path="/Users/akshay/Projects/Depop/android-crop/example/build/intermediates/exploded-aar/com.soundcloud.android/lib/0.9.10/res/values-large-v4/values.xml"
                 qualifiers="large-v4" >
                 <dimen name="crop__bar_height" >56dp
                 </dimen>
@@ -246,60 +246,60 @@ match_parent
         </source>
     </dataSet>
     <dataSet config="main" >
-        <source path="/Users/akshay/Projects/android-crop/example/src/main/res" >
+        <source path="/Users/akshay/Projects/Depop/android-crop/example/src/main/res" >
             <file
                 name="texture"
-                path="/Users/akshay/Projects/android-crop/example/src/main/res/drawable/texture.xml"
+                path="/Users/akshay/Projects/Depop/android-crop/example/src/main/res/drawable/texture.xml"
                 qualifiers=""
                 type="drawable" />
             <file
                 name="ic_launcher"
-                path="/Users/akshay/Projects/android-crop/example/src/main/res/drawable-hdpi/ic_launcher.png"
+                path="/Users/akshay/Projects/Depop/android-crop/example/src/main/res/drawable-hdpi/ic_launcher.png"
                 qualifiers="hdpi-v4"
                 type="drawable" />
             <file
                 name="ic_launcher"
-                path="/Users/akshay/Projects/android-crop/example/src/main/res/drawable-mdpi/ic_launcher.png"
+                path="/Users/akshay/Projects/Depop/android-crop/example/src/main/res/drawable-mdpi/ic_launcher.png"
                 qualifiers="mdpi-v4"
                 type="drawable" />
             <file
                 name="ic_launcher"
-                path="/Users/akshay/Projects/android-crop/example/src/main/res/drawable-xhdpi/ic_launcher.png"
+                path="/Users/akshay/Projects/Depop/android-crop/example/src/main/res/drawable-xhdpi/ic_launcher.png"
                 qualifiers="xhdpi-v4"
                 type="drawable" />
             <file
                 name="tile"
-                path="/Users/akshay/Projects/android-crop/example/src/main/res/drawable-xhdpi/tile.png"
+                path="/Users/akshay/Projects/Depop/android-crop/example/src/main/res/drawable-xhdpi/tile.png"
                 qualifiers="xhdpi-v4"
                 type="drawable" />
             <file
                 name="ic_launcher"
-                path="/Users/akshay/Projects/android-crop/example/src/main/res/drawable-xxhdpi/ic_launcher.png"
+                path="/Users/akshay/Projects/Depop/android-crop/example/src/main/res/drawable-xxhdpi/ic_launcher.png"
                 qualifiers="xxhdpi-v4"
                 type="drawable" />
             <file
                 name="ic_launcher"
-                path="/Users/akshay/Projects/android-crop/example/src/main/res/drawable-xxxhdpi/ic_launcher.png"
+                path="/Users/akshay/Projects/Depop/android-crop/example/src/main/res/drawable-xxxhdpi/ic_launcher.png"
                 qualifiers="xxxhdpi-v4"
                 type="drawable" />
             <file
                 name="activity_main"
-                path="/Users/akshay/Projects/android-crop/example/src/main/res/layout/activity_main.xml"
+                path="/Users/akshay/Projects/Depop/android-crop/example/src/main/res/layout/activity_main.xml"
                 qualifiers=""
                 type="layout" />
             <file
                 name="activity_main"
-                path="/Users/akshay/Projects/android-crop/example/src/main/res/menu/activity_main.xml"
+                path="/Users/akshay/Projects/Depop/android-crop/example/src/main/res/menu/activity_main.xml"
                 qualifiers=""
                 type="menu" />
             <file
-                path="/Users/akshay/Projects/android-crop/example/src/main/res/values/colors.xml"
+                path="/Users/akshay/Projects/Depop/android-crop/example/src/main/res/values/colors.xml"
                 qualifiers="" >
                 <color name="highlight" >#f3f3f3
                 </color>
             </file>
             <file
-                path="/Users/akshay/Projects/android-crop/example/src/main/res/values/strings.xml"
+                path="/Users/akshay/Projects/Depop/android-crop/example/src/main/res/values/strings.xml"
                 qualifiers="" >
                 <string name="app_name" >Crop Demo
                 </string>
@@ -307,7 +307,7 @@ match_parent
                 </string>
             </file>
             <file
-                path="/Users/akshay/Projects/android-crop/example/src/main/res/values/theme.xml"
+                path="/Users/akshay/Projects/Depop/android-crop/example/src/main/res/values/theme.xml"
                 qualifiers="" >
 
                 <style
@@ -334,11 +334,11 @@ always
                 </style>
             </file>
         </source>
-        <source path="/Users/akshay/Projects/android-crop/example/build/generated/res/rs/debug" />
-        <source path="/Users/akshay/Projects/android-crop/example/build/generated/res/generated/debug" />
+        <source path="/Users/akshay/Projects/Depop/android-crop/example/build/generated/res/rs/debug" />
+        <source path="/Users/akshay/Projects/Depop/android-crop/example/build/generated/res/generated/debug" />
     </dataSet>
     <dataSet config="debug" >
-        <source path="/Users/akshay/Projects/android-crop/example/src/debug/res" />
+        <source path="/Users/akshay/Projects/Depop/android-crop/example/src/debug/res" />
     </dataSet>
 
 </merger>

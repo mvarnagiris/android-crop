@@ -16,7 +16,7 @@ To fix this issue, set the `targetSdkVersion` to the highest available value. Th
         errorLine1="        targetSdkVersion 19"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~">
         <location
-            file="/Users/akshay/Projects/android-crop/lib/build.gradle"
+            file="/Users/akshay/Projects/Depop/android-crop/lib/build.gradle"
             line="14"
             column="9"/>
     </issue>
@@ -34,7 +34,7 @@ This is not an error; the application will simply ignore the attribute. However,
         errorLine1="    android:exitFadeDuration=&quot;@android:integer/config_mediumAnimTime&quot;>"
         errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="/Users/akshay/Projects/android-crop/lib/src/main/res/drawable/crop__selectable_background.xml"
+            file="/Users/akshay/Projects/Depop/android-crop/lib/src/main/res/drawable/crop__selectable_background.xml"
             line="4"
             column="5"/>
     </issue>
@@ -50,7 +50,7 @@ This is not an error; the application will simply ignore the attribute. However,
         errorLine1="    androidTestCompile &apos;com.android.support:support-v4:19.1.0&apos;"
         errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="/Users/akshay/Projects/android-crop/lib/build.gradle"
+            file="/Users/akshay/Projects/Depop/android-crop/lib/build.gradle"
             line="23"
             column="5"/>
     </issue>
@@ -64,9 +64,9 @@ This is not an error; the application will simply ignore the attribute. However,
         summary="Finds icons that have identical bitmaps across various configuration parameters"
         explanation="If an icon is provided under different configuration parameters such as `drawable-hdpi` or `-v11`, they should typically be different. This detector catches cases where the same icon is provided in different configuration folder which is usually not intentional.">
         <location
-            file="/Users/akshay/Projects/android-crop/lib/src/main/res/drawable-mdpi/crop__divider.9.png"/>
+            file="/Users/akshay/Projects/Depop/android-crop/lib/src/main/res/drawable-mdpi/crop__divider.9.png"/>
         <location
-            file="/Users/akshay/Projects/android-crop/lib/src/main/res/drawable-hdpi/crop__divider.9.png"/>
+            file="/Users/akshay/Projects/Depop/android-crop/lib/src/main/res/drawable-hdpi/crop__divider.9.png"/>
     </issue>
 
     <issue
@@ -82,7 +82,7 @@ Low density is not really used much anymore, so this check ignores the ldpi dens
         url="http://developer.android.com/guide/practices/screens_support.html"
         urls="http://developer.android.com/guide/practices/screens_support.html">
         <location
-            file="/Users/akshay/Projects/android-crop/lib/src/main/res/drawable-hdpi"/>
+            file="/Users/akshay/Projects/Depop/android-crop/lib/src/main/res/drawable-hdpi"/>
     </issue>
 
     <issue
@@ -98,7 +98,7 @@ Low density is not really used much anymore, so this check ignores the ldpi dens
         url="http://developer.android.com/guide/practices/screens_support.html"
         urls="http://developer.android.com/guide/practices/screens_support.html">
         <location
-            file="/Users/akshay/Projects/android-crop/lib/src/main/res/drawable-mdpi"/>
+            file="/Users/akshay/Projects/Depop/android-crop/lib/src/main/res/drawable-mdpi"/>
     </issue>
 
 </issues>
