@@ -1,12 +1,10 @@
 > I guess people are just cropping out all the sadness
 
-This is another Android library project providing a simple image cropping `Activity`, based on code from AOSP.
+An Android library project to provide a simple image cropping `Activity`, based on code from AOSP.
 
 [![Build Status](https://travis-ci.org/jdamcd/android-crop.png)](https://travis-ci.org/jdamcd/android-crop)
 
 ## Goals
-
-I put this together in my [hacker time](http://backstage.soundcloud.com/2011/12/stop-hacker-time/) as a replacement for our old [android-cropimage fork](https://github.com/soundcloud/android-cropimage).
 
 * Gradle build with AAR
 * Modern UI
@@ -39,6 +37,16 @@ Listen for the result of the crop (see example project if you want to do some er
 The library provides a utility method to start an image picker:
 
 `Crop.pickImage(activity)`
+
+#### Dependency
+
+The AAR is published on Maven Central:
+
+`compile 'com.soundcloud.android:android-crop:0.9.10@aar'`
+
+#### Apps
+
+Apps that use this library include: [SoundCloud](https://play.google.com/store/apps/details?id=com.soundcloud.android), [Depop](https://play.google.com/store/apps/details?id=com.depop)
 
 ## How does it look?
 

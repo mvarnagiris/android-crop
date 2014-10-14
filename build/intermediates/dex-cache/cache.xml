@@ -2,10 +2,10 @@
 <pre-dex-items>
 
     <item
-        dex="/Users/akshay/Projects/Depop/android-crop/example/build/intermediates/pre-dexed/debug/classes-0c45f7c7b2f4428afa381c93ed345b8f9220ba45.jar"
-        jar="/Users/akshay/Projects/Depop/android-crop/example/build/intermediates/exploded-aar/com.soundcloud.android/lib/0.9.8.1/classes.jar"
+        dex="/Users/akshay/Projects/android-crop/example/build/intermediates/pre-dexed/debug/classes-127658b55fc494a10871bb3f7d6f4617bfa93c5e.jar"
+        jar="/Users/akshay/Projects/android-crop/example/build/intermediates/exploded-aar/com.soundcloud.android/lib/0.9.10/classes.jar"
         jumboMode="false"
         revision="19.1.0"
-        sha1="b0dcf6b5e27feeb4fa47705b66c82c5289fbe23e"/>
+        sha1="fb6071799b8a66bd62508b46bdafb74f00938c85"/>
 
 </pre-dex-items>
