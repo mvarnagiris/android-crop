@@ -4,126 +4,87 @@
     xmlns:ns1="http://schemas.android.com/tools" >
 
     <dataSet config="debug" >
-        <source path="/Users/akshay/Projects/android-crop/lib/build/intermediates/bundles/debug/res" >
+        <source path="/Users/akshay/Projects/Depop/android-crop/lib/build/intermediates/bundles/debug/res" >
             <file
                 name="crop__selectable_background"
-                path="/Users/akshay/Projects/android-crop/lib/build/intermediates/bundles/debug/res/drawable/crop__selectable_background.xml"
+                path="/Users/akshay/Projects/Depop/android-crop/lib/build/intermediates/bundles/debug/res/drawable/crop__selectable_background.xml"
                 qualifiers=""
                 type="drawable" />
             <file
                 name="crop__texture"
-                path="/Users/akshay/Projects/android-crop/lib/build/intermediates/bundles/debug/res/drawable/crop__texture.xml"
+                path="/Users/akshay/Projects/Depop/android-crop/lib/build/intermediates/bundles/debug/res/drawable/crop__texture.xml"
                 qualifiers=""
                 type="drawable" />
             <file
                 name="crop__divider"
-                path="/Users/akshay/Projects/android-crop/lib/build/intermediates/bundles/debug/res/drawable-hdpi-v4/crop__divider.9.png"
+                path="/Users/akshay/Projects/Depop/android-crop/lib/build/intermediates/bundles/debug/res/drawable-hdpi-v4/crop__divider.9.png"
                 qualifiers="hdpi-v4"
                 type="drawable" />
             <file
                 name="crop__ic_cancel"
-                path="/Users/akshay/Projects/android-crop/lib/build/intermediates/bundles/debug/res/drawable-hdpi-v4/crop__ic_cancel.png"
+                path="/Users/akshay/Projects/Depop/android-crop/lib/build/intermediates/bundles/debug/res/drawable-hdpi-v4/crop__ic_cancel.png"
                 qualifiers="hdpi-v4"
                 type="drawable" />
             <file
                 name="crop__ic_done"
-                path="/Users/akshay/Projects/android-crop/lib/build/intermediates/bundles/debug/res/drawable-hdpi-v4/crop__ic_done.png"
+                path="/Users/akshay/Projects/Depop/android-crop/lib/build/intermediates/bundles/debug/res/drawable-hdpi-v4/crop__ic_done.png"
                 qualifiers="hdpi-v4"
                 type="drawable" />
             <file
                 name="crop__divider"
-                path="/Users/akshay/Projects/android-crop/lib/build/intermediates/bundles/debug/res/drawable-mdpi-v4/crop__divider.9.png"
+                path="/Users/akshay/Projects/Depop/android-crop/lib/build/intermediates/bundles/debug/res/drawable-mdpi-v4/crop__divider.9.png"
                 qualifiers="mdpi-v4"
                 type="drawable" />
             <file
                 name="crop__ic_cancel"
-                path="/Users/akshay/Projects/android-crop/lib/build/intermediates/bundles/debug/res/drawable-mdpi-v4/crop__ic_cancel.png"
+                path="/Users/akshay/Projects/Depop/android-crop/lib/build/intermediates/bundles/debug/res/drawable-mdpi-v4/crop__ic_cancel.png"
                 qualifiers="mdpi-v4"
                 type="drawable" />
             <file
                 name="crop__ic_done"
-                path="/Users/akshay/Projects/android-crop/lib/build/intermediates/bundles/debug/res/drawable-mdpi-v4/crop__ic_done.png"
+                path="/Users/akshay/Projects/Depop/android-crop/lib/build/intermediates/bundles/debug/res/drawable-mdpi-v4/crop__ic_done.png"
                 qualifiers="mdpi-v4"
                 type="drawable" />
             <file
                 name="crop__divider"
-                path="/Users/akshay/Projects/android-crop/lib/build/intermediates/bundles/debug/res/drawable-xhdpi-v4/crop__divider.9.png"
+                path="/Users/akshay/Projects/Depop/android-crop/lib/build/intermediates/bundles/debug/res/drawable-xhdpi-v4/crop__divider.9.png"
                 qualifiers="xhdpi-v4"
                 type="drawable" />
             <file
                 name="crop__ic_cancel"
-                path="/Users/akshay/Projects/android-crop/lib/build/intermediates/bundles/debug/res/drawable-xhdpi-v4/crop__ic_cancel.png"
+                path="/Users/akshay/Projects/Depop/android-crop/lib/build/intermediates/bundles/debug/res/drawable-xhdpi-v4/crop__ic_cancel.png"
                 qualifiers="xhdpi-v4"
                 type="drawable" />
             <file
                 name="crop__ic_done"
-                path="/Users/akshay/Projects/android-crop/lib/build/intermediates/bundles/debug/res/drawable-xhdpi-v4/crop__ic_done.png"
+                path="/Users/akshay/Projects/Depop/android-crop/lib/build/intermediates/bundles/debug/res/drawable-xhdpi-v4/crop__ic_done.png"
                 qualifiers="xhdpi-v4"
                 type="drawable" />
             <file
                 name="crop__tile"
-                path="/Users/akshay/Projects/android-crop/lib/build/intermediates/bundles/debug/res/drawable-xhdpi-v4/crop__tile.png"
+                path="/Users/akshay/Projects/Depop/android-crop/lib/build/intermediates/bundles/debug/res/drawable-xhdpi-v4/crop__tile.png"
                 qualifiers="xhdpi-v4"
                 type="drawable" />
             <file
                 name="crop__activity_crop"
-                path="/Users/akshay/Projects/android-crop/lib/build/intermediates/bundles/debug/res/layout/crop__activity_crop.xml"
+                path="/Users/akshay/Projects/Depop/android-crop/lib/build/intermediates/bundles/debug/res/layout/crop__activity_crop.xml"
                 qualifiers=""
                 type="layout" />
             <file
                 name="crop__layout_done_cancel"
-                path="/Users/akshay/Projects/android-crop/lib/build/intermediates/bundles/debug/res/layout/crop__layout_done_cancel.xml"
+                path="/Users/akshay/Projects/Depop/android-crop/lib/build/intermediates/bundles/debug/res/layout/crop__layout_done_cancel.xml"
                 qualifiers=""
                 type="layout" />
             <file
-                path="/Users/akshay/Projects/android-crop/lib/build/intermediates/bundles/debug/res/values/values.xml"
+                path="/Users/akshay/Projects/Depop/android-crop/lib/build/intermediates/bundles/debug/res/values/values.xml"
                 qualifiers="" >
-                <string name="crop__wait" >Please wait…
+                <string
+                    name="crop__cancel"
+                    ns1:ignore="ButtonCase" >CANCEL
                 </string>
 
-                <color name="crop__button_bar" >#f3f3f3
-                </color>
-
-                <declare-styleable name="CropImageView" >
-                    <attr
-                        name="highlightColor"
-                        format="reference|color" />
-                    <attr
-                        name="showThirds"
-                        format="boolean" />
-                    <attr name="showHandles" >
-                        <enum
-                            name="changing"
-                            value="0" />
-                        <enum
-                            name="always"
-                            value="1" />
-                        <enum
-                            name="never"
-                            value="2" />
-                    </attr>
-                </declare-styleable>
-
-                <string name="crop__saving" >Saving picture…
-                </string>
-
-                <style name="Crop.ActionButtonText.Done" >
-                    <item name="android:drawableLeft">
-@drawable/crop__ic_done
-                    </item>
-                    <item name="android:text">
-@string/crop__done
-                    </item>
-                </style>
-
-                <string name="crop__pick_error" >No image sources available
-                </string>
-
-                <color name="crop__selector_pressed" >#1a000000
-                </color>
-
-                <string name="crop__done" >DONE
-                </string>
+                <dimen name="crop__bar_height" >48dp
+                </dimen>
 
                 <style name="Crop.ActionButtonText.Cancel" >
                     <item name="android:drawableLeft">
@@ -134,15 +95,31 @@
                     </item>
                 </style>
 
+                <string name="crop__saving" >Saving picture…
+                </string>
+
+                <attr
+                    name="cropImageStyle"
+                    format="reference" />
+
                 <color name="crop__selector_focused" >#77000000
                 </color>
+                <color name="crop__selector_pressed" >#1a000000
+                </color>
 
-                <style name="Crop" />
+                <style name="Crop.ActionButtonText.Done" >
+                    <item name="android:drawableLeft">
+@drawable/crop__ic_done
+                    </item>
+                    <item name="android:text">
+@string/crop__done
+                    </item>
+                </style>
 
-                <string
-                    name="crop__cancel"
-                    ns1:ignore="ButtonCase" >CANCEL
-                </string>
+                <color name="crop__button_bar" >#f3f3f3
+                </color>
+                <color name="crop__button_text" >#666666
+                </color>
 
                 <style name="Crop.DoneCancelBar" >
                     <item name="android:layout_width">
@@ -172,27 +149,28 @@ middle
                     </item>
                 </style>
 
-                <attr
-                    name="cropImageStyle"
-                    format="reference" />
+                <declare-styleable name="CropImageView" >
+                    <attr
+                        name="highlightColor"
+                        format="reference|color" />
+                    <attr
+                        name="showThirds"
+                        format="boolean" />
+                    <attr name="showHandles" >
+                        <enum
+                            name="changing"
+                            value="0" />
+                        <enum
+                            name="always"
+                            value="1" />
+                        <enum
+                            name="never"
+                            value="2" />
+                    </attr>
+                </declare-styleable>
 
-                <dimen name="crop__bar_height" >48dp
-                </dimen>
-
-                <style name="Crop.ActionButton" >
-                    <item name="android:layout_width">
-0dp
-                    </item>
-                    <item name="android:layout_height">
-match_parent
-                    </item>
-                    <item name="android:layout_weight">
-1
-                    </item>
-                    <item name="android:background">
-@drawable/crop__selectable_background
-                    </item>
-                </style>
+                <string name="crop__pick_error" >No image sources available
+                </string>
 
                 <style name="Crop.ActionButtonText" >
                     <item name="android:layout_width">
@@ -224,23 +202,43 @@ bold
                     </item>
                 </style>
 
-                <color name="crop__button_text" >#666666
-                </color>
+                <style name="Crop.ActionButton" >
+                    <item name="android:layout_width">
+0dp
+                    </item>
+                    <item name="android:layout_height">
+match_parent
+                    </item>
+                    <item name="android:layout_weight">
+1
+                    </item>
+                    <item name="android:background">
+@drawable/crop__selectable_background
+                    </item>
+                </style>
+
+                <string name="crop__done" >DONE
+                </string>
+
+                <style name="Crop" />
+
+                <string name="crop__wait" >Please wait…
+                </string>
             </file>
             <file
-                path="/Users/akshay/Projects/android-crop/lib/build/intermediates/bundles/debug/res/values-land/values.xml"
+                path="/Users/akshay/Projects/Depop/android-crop/lib/build/intermediates/bundles/debug/res/values-land/values.xml"
                 qualifiers="land" >
                 <dimen name="crop__bar_height" >40dp
                 </dimen>
             </file>
             <file
-                path="/Users/akshay/Projects/android-crop/lib/build/intermediates/bundles/debug/res/values-large-land-v4/values.xml"
+                path="/Users/akshay/Projects/Depop/android-crop/lib/build/intermediates/bundles/debug/res/values-large-land-v4/values.xml"
                 qualifiers="large-land-v4" >
                 <dimen name="crop__bar_height" >56dp
                 </dimen>
             </file>
             <file
-                path="/Users/akshay/Projects/android-crop/lib/build/intermediates/bundles/debug/res/values-large-v4/values.xml"
+                path="/Users/akshay/Projects/Depop/android-crop/lib/build/intermediates/bundles/debug/res/values-large-v4/values.xml"
                 qualifiers="large-v4" >
                 <dimen name="crop__bar_height" >56dp
                 </dimen>
@@ -248,9 +246,9 @@ bold
         </source>
     </dataSet>
     <dataSet config="main" >
-        <source path="/Users/akshay/Projects/android-crop/lib/src/androidTest/res" />
-        <source path="/Users/akshay/Projects/android-crop/lib/build/generated/res/rs/test/debug" />
-        <source path="/Users/akshay/Projects/android-crop/lib/build/generated/res/generated/test/debug" />
+        <source path="/Users/akshay/Projects/Depop/android-crop/lib/src/androidTest/res" />
+        <source path="/Users/akshay/Projects/Depop/android-crop/lib/build/generated/res/rs/test/debug" />
+        <source path="/Users/akshay/Projects/Depop/android-crop/lib/build/generated/res/generated/test/debug" />
     </dataSet>
 
 </merger>

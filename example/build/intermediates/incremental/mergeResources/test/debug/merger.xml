@@ -2,9 +2,9 @@
 <merger version="2" >
 
     <dataSet config="main" >
-        <source path="/Users/akshay/Projects/android-crop/example/src/androidTest/res" />
-        <source path="/Users/akshay/Projects/android-crop/example/build/generated/res/rs/test/debug" />
-        <source path="/Users/akshay/Projects/android-crop/example/build/generated/res/generated/test/debug" />
+        <source path="/Users/akshay/Projects/Depop/android-crop/example/src/androidTest/res" />
+        <source path="/Users/akshay/Projects/Depop/android-crop/example/build/generated/res/rs/test/debug" />
+        <source path="/Users/akshay/Projects/Depop/android-crop/example/build/generated/res/generated/test/debug" />
     </dataSet>
 
 </merger>
