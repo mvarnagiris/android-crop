@@ -42,7 +42,7 @@ This is not an error; the application will simply ignore the attribute. However,
     <issue
         id="GradleDependency"
         severity="Warning"
-        message="A newer version of com.android.support:support-v4 than 19.1.0 is available: 21.0.0-rc1"
+        message="A newer version of com.android.support:support-v4 than 19.1.0 is available: 21.0.0"
         category="Correctness"
         priority="4"
         summary="Looks for old or obsolete Gradle library dependencies"

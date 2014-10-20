@@ -33,6 +33,10 @@ import android.os.Handler;
 import android.provider.MediaStore;
 import android.view.View;
 import android.view.Window;
+import android.view.Display;
+import android.graphics.Point;
+
+
 
 import com.soundcloud.android.crop.util.Log;
 
@@ -48,7 +52,7 @@ public class CropImageActivity extends MonitoredActivity {
 
     private static final boolean IN_MEMORY_CROP = Build.VERSION.SDK_INT < Build.VERSION_CODES.GINGERBREAD_MR1;
     private static final int SIZE_DEFAULT = 2048;
-    private static final int SIZE_LIMIT = 4096;
+    private static int SIZE_LIMIT = 1000;
 
     private final Handler handler = new Handler();
 
@@ -120,15 +124,16 @@ public class CropImageActivity extends MonitoredActivity {
             maxX = extras.getInt( Crop.Extra.MAX_X );
             maxY = extras.getInt( Crop.Extra.MAX_Y );
             saveUri = extras.getParcelable( MediaStore.EXTRA_OUTPUT );
+
         }
 
         sourceUri = intent.getData();
         if (sourceUri != null) {
             exifRotation = CropUtil.getExifRotation( CropUtil.getFromMediaUri( getContentResolver(), sourceUri ) );
-
             InputStream is = null;
             try {
                 sampleSize = calculateBitmapSampleSize( sourceUri );
+                Log.e( "Sample size = " + sampleSize );
                 is = getContentResolver().openInputStream( sourceUri );
                 BitmapFactory.Options option = new BitmapFactory.Options();
                 option.inSampleSize = sampleSize;
@@ -144,6 +149,8 @@ public class CropImageActivity extends MonitoredActivity {
             }
         }
     }
+
+
 
     private int calculateBitmapSampleSize(Uri bitmapUri) throws IOException {
         InputStream is = null;
