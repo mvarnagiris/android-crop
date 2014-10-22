@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<selector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:exitFadeDuration="@android:integer/config_mediumAnimTime">
+<selector xmlns:android="http://schemas.android.com/apk/res/android" android:exitFadeDuration="@android:integer/config_mediumAnimTime">
 
     <item android:state_pressed="true">
         <shape>
@@ -17,4 +16,4 @@
 
     <item android:drawable="@android:color/transparent" />
 
-</selector><!-- From: file:/Users/akshay/Projects/Depop/android-crop/lib/src/main/res/drawable/crop__selectable_background.xml -->
+</selector><!-- From: file:/C:/Developer/git/android-crop/lib/src/main/res/drawable/crop__selectable_background.xml -->

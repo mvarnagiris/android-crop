@@ -47,7 +47,7 @@ containing a value of this type.
         public static int crop__selector_pressed=0x7f040003;
     }
     public static final class dimen {
-        public static int crop__bar_height=0x7f060000;
+        public static int crop__bar_height=0x7f050000;
     }
     public static final class drawable {
         public static int crop__divider=0x7f020000;
@@ -58,32 +58,32 @@ containing a value of this type.
         public static int crop__tile=0x7f020005;
     }
     public static final class id {
-        public static int always=0x7f050001;
-        public static int btn_cancel=0x7f050005;
-        public static int btn_done=0x7f050006;
-        public static int changing=0x7f050000;
-        public static int crop_image=0x7f050004;
-        public static int done_cancel_bar=0x7f050003;
-        public static int never=0x7f050002;
+        public static int always=0x7f080000;
+        public static int btn_cancel=0x7f080005;
+        public static int btn_done=0x7f080006;
+        public static int changing=0x7f080001;
+        public static int crop_image=0x7f080004;
+        public static int done_cancel_bar=0x7f080003;
+        public static int never=0x7f080002;
     }
     public static final class layout {
         public static int crop__activity_crop=0x7f030000;
         public static int crop__layout_done_cancel=0x7f030001;
     }
     public static final class string {
-        public static int crop__cancel=0x7f070000;
-        public static int crop__done=0x7f070001;
-        public static int crop__pick_error=0x7f070002;
-        public static int crop__saving=0x7f070003;
-        public static int crop__wait=0x7f070004;
+        public static int crop__cancel=0x7f060000;
+        public static int crop__done=0x7f060001;
+        public static int crop__pick_error=0x7f060002;
+        public static int crop__saving=0x7f060003;
+        public static int crop__wait=0x7f060004;
     }
     public static final class style {
-        public static int Crop=0x7f080000;
-        public static int Crop_ActionButton=0x7f080001;
-        public static int Crop_ActionButtonText=0x7f080002;
-        public static int Crop_ActionButtonText_Cancel=0x7f080003;
-        public static int Crop_ActionButtonText_Done=0x7f080004;
-        public static int Crop_DoneCancelBar=0x7f080005;
+        public static int Crop=0x7f070000;
+        public static int Crop_ActionButton=0x7f070001;
+        public static int Crop_ActionButtonText=0x7f070002;
+        public static int Crop_ActionButtonText_Cancel=0x7f070003;
+        public static int Crop_ActionButtonText_Done=0x7f070004;
+        public static int Crop_DoneCancelBar=0x7f070005;
     }
     public static final class styleable {
         /** Attributes that can be used with a CropImageView.
@@ -114,7 +114,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
           @attr name com.soundcloud.android.crop:highlightColor
         */
-        public static final int CropImageView_highlightColor = 0;
+        public static int CropImageView_highlightColor = 0;
         /**
           <p>This symbol is the offset where the {@link com.soundcloud.android.crop.R.attr#showHandles}
           attribute's value can be found in the {@link #CropImageView} array.
@@ -132,7 +132,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 </table>
           @attr name com.soundcloud.android.crop:showHandles
         */
-        public static final int CropImageView_showHandles = 2;
+        public static int CropImageView_showHandles = 2;
         /**
           <p>This symbol is the offset where the {@link com.soundcloud.android.crop.R.attr#showThirds}
           attribute's value can be found in the {@link #CropImageView} array.
@@ -146,6 +146,6 @@ theme attribute (in the form
 containing a value of this type.
           @attr name com.soundcloud.android.crop:showThirds
         */
-        public static final int CropImageView_showThirds = 1;
+        public static int CropImageView_showThirds = 1;
     };
 }

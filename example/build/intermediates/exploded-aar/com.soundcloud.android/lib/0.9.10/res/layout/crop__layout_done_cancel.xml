@@ -4,14 +4,15 @@
     <FrameLayout
         android:id="@+id/btn_cancel"
         style="@style/Crop.ActionButton">
+
         <TextView style="@style/Crop.ActionButtonText.Cancel" />
     </FrameLayout>
 
     <FrameLayout
         android:id="@+id/btn_done"
         style="@style/Crop.ActionButton">
+
         <TextView style="@style/Crop.ActionButtonText.Done" />
     </FrameLayout>
 
-</LinearLayout>
-<!-- From: file:/Users/akshay/Projects/Depop/android-crop/lib/src/main/res/layout/crop__layout_done_cancel.xml -->
+</LinearLayout><!-- From: file:/C:/Developer/git/android-crop/lib/src/main/res/layout/crop__layout_done_cancel.xml -->

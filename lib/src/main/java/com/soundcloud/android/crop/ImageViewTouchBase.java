@@ -32,7 +32,13 @@ import android.widget.ImageView;
 abstract class ImageViewTouchBase extends ImageView {
 
     private static final float SCALE_RATE = 1.25F;
-
+    // The current bitmap being displayed.
+    protected final RotateBitmap bitmapDisplayed = new RotateBitmap(null, 0);
+    // This is the final matrix which is computed as the concatentation
+    // of the base matrix and the supplementary matrix.
+    private final Matrix displayMatrix = new Matrix();
+    // Temporary buffer used for getting the values out of a matrix.
+    private final float[] matrixValues = new float[9];
     // This is the base transformation which is used to show the image
     // initially.  The current computation for this shows the image in
     // it's entirety, letterboxing as needed.  One could choose to
@@ -41,39 +47,17 @@ abstract class ImageViewTouchBase extends ImageView {
     // This matrix is recomputed when we go from the thumbnail image to
     // the full size image.
     protected Matrix baseMatrix = new Matrix();
-
     // This is the supplementary transformation which reflects what
     // the user has done in terms of zooming and panning.
     //
     // This matrix remains the same when we go from the thumbnail image
     // to the full size image.
     protected Matrix suppMatrix = new Matrix();
-
-    // This is the final matrix which is computed as the concatentation
-    // of the base matrix and the supplementary matrix.
-    private final Matrix displayMatrix = new Matrix();
-
-    // Temporary buffer used for getting the values out of a matrix.
-    private final float[] matrixValues = new float[9];
-
-    // The current bitmap being displayed.
-    protected final RotateBitmap bitmapDisplayed = new RotateBitmap(null, 0);
-
+    protected Handler handler = new Handler();
     int thisWidth = -1;
     int thisHeight = -1;
-
     float maxZoom;
-
     private Runnable onLayoutRunnable;
-
-    protected Handler handler = new Handler();
-
-    // ImageViewTouchBase will pass a Bitmap to the Recycler if it has finished
-    // its use of that Bitmap
-    public interface Recycler {
-        public void recycle(Bitmap b);
-    }
-
     private Recycler recycler;
 
     public ImageViewTouchBase(Context context) {
@@ -155,23 +139,22 @@ abstract class ImageViewTouchBase extends ImageView {
     }
 
     public void clear() {
-        setImageBitmapResetBase(null, true);
+        setBitmap((Bitmap) null, true);
     }
-
 
     // This function changes bitmap, reset base matrix according to the size
     // of the bitmap, and optionally reset the supplementary matrix
-    public void setImageBitmapResetBase(final Bitmap bitmap, final boolean resetSupp) {
-        setImageRotateBitmapResetBase(new RotateBitmap(bitmap, 0), resetSupp);
+    public void setBitmap(Bitmap bitmap, boolean reset) {
+        setBitmap(new RotateBitmap(bitmap, 0), reset);
     }
 
-    public void setImageRotateBitmapResetBase(final RotateBitmap bitmap, final boolean resetSupp) {
+    public void setBitmap(final RotateBitmap bitmap, final boolean reset) {
         final int viewWidth = getWidth();
 
-        if (viewWidth <= 0)  {
+        if (viewWidth <= 0) {
             onLayoutRunnable = new Runnable() {
                 public void run() {
-                    setImageRotateBitmapResetBase(bitmap, resetSupp);
+                    setBitmap(bitmap, reset);
                 }
             };
             return;
@@ -185,7 +168,7 @@ abstract class ImageViewTouchBase extends ImageView {
             setImageBitmap(null);
         }
 
-        if (resetSupp) {
+        if (reset) {
             suppMatrix.reset();
         }
         setImageMatrix(getImageViewMatrix());
@@ -208,7 +191,7 @@ abstract class ImageViewTouchBase extends ImageView {
         m.mapRect(rect);
 
         float height = rect.height();
-        float width  = rect.width();
+        float width = rect.width();
 
         float deltaX = 0, deltaY = 0;
 
@@ -274,7 +257,7 @@ abstract class ImageViewTouchBase extends ImageView {
             matrix.postConcat(bitmap.getRotateMatrix());
         }
         matrix.postScale(scale, scale);
-        matrix.postTranslate((viewWidth  - w * scale) / 2F, (viewHeight - h * scale) / 2F);
+        matrix.postTranslate((viewWidth - w * scale) / 2F, (viewHeight - h * scale) / 2F);
     }
 
     // Combine the base matrix and the supp matrix to make the final matrix
@@ -286,7 +269,7 @@ abstract class ImageViewTouchBase extends ImageView {
         return displayMatrix;
     }
 
-    public Matrix getUnrotatedMatrix(){
+    public Matrix getUnrotatedMatrix() {
         Matrix unrotated = new Matrix();
         getProperBaseMatrix(bitmapDisplayed, unrotated, false);
         unrotated.postConcat(suppMatrix);
@@ -298,7 +281,7 @@ abstract class ImageViewTouchBase extends ImageView {
             return 1F;
         }
 
-        float fw = (float) bitmapDisplayed.getWidth()  / (float) thisWidth;
+        float fw = (float) bitmapDisplayed.getWidth() / (float) thisWidth;
         float fh = (float) bitmapDisplayed.getHeight() / (float) thisHeight;
         return Math.max(fw, fh) * 4; // 400%
     }
@@ -393,5 +376,11 @@ abstract class ImageViewTouchBase extends ImageView {
     protected void panBy(float dx, float dy) {
         postTranslate(dx, dy);
         setImageMatrix(getImageViewMatrix());
+    }
+
+    // ImageViewTouchBase will pass a Bitmap to the Recycler if it has finished
+    // its use of that Bitmap
+    public interface Recycler {
+        public void recycle(Bitmap b);
     }
 }
