@@ -75,6 +75,5 @@ public class CropIntentBuilder {
         String ASPECT_Y = "aspect_y";
         String MAX_X = "max_x";
         String MAX_Y = "max_y";
-        String ERROR = "error";
     }
 }

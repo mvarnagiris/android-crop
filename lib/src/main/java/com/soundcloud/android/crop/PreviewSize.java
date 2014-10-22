@@ -14,16 +14,21 @@ class PreviewSize implements Serializable {
             throw new NullPointerException("Preview view cannot be null.");
         }
 
-        final int viewWidth = previewView.getWidth();
-        final int viewHeight = previewView.getHeight();
+        final int viewWidth = previewView.getMeasuredWidth();
+        final int viewHeight = previewView.getMeasuredHeight();
 
         if (viewWidth == 0 || viewHeight == 0) {
             throw new IllegalStateException("Preview view doesn't have a size. Make sure to call this only after layout finishes.");
         }
 
         final int maxTextureSize = getMaxTextureSize();
-        width = Math.min(viewWidth, maxTextureSize);
-        height = Math.max(viewHeight, maxTextureSize);
+        if (maxTextureSize > 0) {
+            width = Math.min(viewWidth, maxTextureSize);
+            height = Math.min(viewHeight, maxTextureSize);
+        } else {
+            width = viewWidth;
+            height = viewHeight;
+        }
     }
 
     public int getWidth() {

@@ -29,6 +29,6 @@ public class Crop {
      * @return Throwable handled in CropImageActivity
      */
     public static Throwable getError(Intent result) {
-        return (Throwable) result.getSerializableExtra(CropIntentBuilder.Extra.ERROR);
+        return (Throwable) result.getSerializableExtra(BaseCropActivity.RESULT_EXTRA_ERROR);
     }
 }

@@ -22,6 +22,14 @@ class PreviewImage {
         return bitmap;
     }
 
+    public int getWidth() {
+        return bitmap.getWidth();
+    }
+
+    public int getHeight() {
+        return bitmap.getHeight();
+    }
+
     private int calculateSampleSize(PreviewSize previewSize, SourceImage sourceImage) throws Exception {
         // Decode bitmap bounds
         final BitmapFactory.Options options = new BitmapFactory.Options();

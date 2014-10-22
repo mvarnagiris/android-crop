@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.soundcloud.android.crop.BaseCropActivity;
 import com.soundcloud.android.crop.Crop;
 
 import java.io.File;
@@ -73,7 +74,7 @@ public class MainActivity extends Activity {
     private void handleCrop(int resultCode, Intent result) {
         if (resultCode == RESULT_OK) {
             resultView.setImageURI(Crop.getOutput(result));
-        } else if (resultCode == RESULT_CANCELED) {
+        } else if (resultCode == BaseCropActivity.RESULT_ERROR) {
             Toast.makeText(this, Crop.getError(result).getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
