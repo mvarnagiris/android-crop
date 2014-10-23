@@ -104,9 +104,12 @@ public class SaveFragment extends Fragment {
         }
 
         private void save() throws Exception {
-            Bitmap croppedImage = sourceImage.decodeRegion(contentResolver, cropRect);
             final Point cropSize = getCropSize();
-            croppedImage = resizeImage(croppedImage, cropSize.x, cropSize.y);
+            final int outWidth = cropSize.x;
+            final int outHeight = cropSize.y;
+
+            Bitmap croppedImage = sourceImage.decodeRegion(contentResolver, cropRect, outWidth, outHeight);
+            croppedImage = resizeImage(croppedImage, outWidth, outHeight);
             saveImage(croppedImage);
         }
 

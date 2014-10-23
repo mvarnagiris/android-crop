@@ -94,7 +94,7 @@ class SourceImage implements Parcelable {
         }
     }
 
-    public Bitmap decodeRegion(ContentResolver contentResolver, Rect cropRect) throws Exception {
+    public Bitmap decodeRegion(ContentResolver contentResolver, Rect cropRect, int outWidth, int outHeight) throws Exception {
         InputStream inputStream = null;
         try {
             inputStream = contentResolver.openInputStream(uri);
@@ -115,7 +115,16 @@ class SourceImage implements Parcelable {
                 cropRect = new Rect((int) adjusted.left, (int) adjusted.top, (int) adjusted.right, (int) adjusted.bottom);
             }
 
-            return decoder.decodeRegion(cropRect, new BitmapFactory.Options());
+            // Try to decode smallest possible region
+            final BitmapFactory.Options options = new BitmapFactory.Options();
+            final int cropWidth = cropRect.width();
+            final int cropHeight = cropRect.height();
+            options.inSampleSize = 1;
+            while (cropWidth / (options.inSampleSize + 1) > outWidth && cropHeight / (options.inSampleSize + 1) > outHeight) {
+                options.inSampleSize++;
+            }
+
+            return decoder.decodeRegion(cropRect, options);
         } catch (OutOfMemoryError e) {
             throw new Exception("Out of memory");
         } finally {

@@ -67,7 +67,7 @@ public class MainActivity extends Activity {
 
     private void beginCrop(Uri sourceUri) {
         Uri outputUri = Uri.fromFile(new File(getCacheDir(), "cropped"));
-        final Intent intent = Crop.createIntentBuilder(this, sourceUri, outputUri).build();
+        final Intent intent = Crop.createIntentBuilder(this, sourceUri, outputUri).asSquare().withMaxSize(100, 100).build();
         startActivityForResult(intent, REQUEST_CROP);
     }
 
