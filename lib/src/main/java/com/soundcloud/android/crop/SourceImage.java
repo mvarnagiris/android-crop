@@ -88,7 +88,7 @@ class SourceImage implements Parcelable {
             is = contentResolver.openInputStream(uri);
             return BitmapFactory.decodeStream(is, null, options);
         } catch (OutOfMemoryError e) {
-            throw new Exception(e.getMessage());
+            throw new Exception("Out of memory");
         } finally {
             CropUtil.closeSilently(is);
         }
@@ -117,7 +117,7 @@ class SourceImage implements Parcelable {
 
             return decoder.decodeRegion(cropRect, new BitmapFactory.Options());
         } catch (OutOfMemoryError e) {
-            throw new Exception(e.getMessage());
+            throw new Exception("Out of memory");
         } finally {
             CropUtil.closeSilently(inputStream);
         }

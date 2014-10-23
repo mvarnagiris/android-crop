@@ -169,19 +169,28 @@ class PreviewImage {
     }
 
     private int calculateSampleSize(PreviewSize previewSize, SourceImage sourceImage) throws Exception {
-        // Raw height and width of image
         final int height = sourceImage.getHeight();
         final int width = sourceImage.getWidth();
+        int viewHeight = previewSize.getHeight();
+        int viewWidth = previewSize.getWidth();
         int inSampleSize = 1;
 
-        if (height > previewSize.getHeight() || width > previewSize.getWidth()) {
+        if (height > viewHeight || width > viewWidth) {
+            // Do a bit more aggressive sampling. Assume that the max size we need is scaled down image
+            // that fits within a view.
+            final int dX = width - viewWidth;
+            final int dY = height - viewHeight;
+            if (dX > dY) {
+                viewHeight = (int) ((float) height * viewWidth / width);
+            } else {
+                viewWidth = (int) ((float) width * viewHeight / height);
+            }
+
             final int halfHeight = height / 2;
             final int halfWidth = width / 2;
 
-            // Calculate the largest inSampleSize value that is a power of 2 and keeps both height
-            // and width larger than the requested height and width.
-            while ((halfHeight / inSampleSize) > previewSize.getHeight() && (halfWidth / inSampleSize) > previewSize.getWidth()) {
-                inSampleSize *= 2;
+            while ((halfHeight / inSampleSize) > viewHeight && (halfWidth / inSampleSize) > viewWidth) {
+                inSampleSize++;
             }
         }
 

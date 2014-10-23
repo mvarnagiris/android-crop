@@ -122,30 +122,25 @@ public class SaveFragment extends Fragment {
                 float ratio = (float) width / (float) height;
                 if ((float) maxX / (float) maxY > ratio) {
                     outHeight = maxY;
-                    outWidth = (int) ((float) maxY * ratio + .5f);
+                    outWidth = (int) ((float) maxY * ratio + 0.5f);
                 } else {
                     outWidth = maxX;
-                    outHeight = (int) ((float) maxX / ratio + .5f);
+                    outHeight = (int) ((float) maxX / ratio + 0.5f);
                 }
             }
             return new Point(outWidth, outHeight);
         }
 
         private Bitmap resizeImage(Bitmap croppedImage, int outWidth, int outHeight) throws Exception {
-            if (croppedImage == null) {
-                return null;
-            }
-
-            if ((cropConfig.getAspectX() == cropConfig.getAspectY()) && (outHeight != outWidth)) {
-                outHeight = outHeight < outWidth ? outWidth : outHeight;
-                outWidth = outWidth < outHeight ? outHeight : outWidth;
+            if (croppedImage == null || (croppedImage.getWidth() <= outWidth && croppedImage.getHeight() <= outHeight)) {
+                return croppedImage;
             }
 
             final Bitmap newBitmap;
             try {
                 newBitmap = Bitmap.createScaledBitmap(croppedImage, outWidth, outHeight, true);
             } catch (OutOfMemoryError error) {
-                throw new Exception(error.getMessage());
+                throw new Exception("Out of memory.");
             }
 
             if (newBitmap != croppedImage) {

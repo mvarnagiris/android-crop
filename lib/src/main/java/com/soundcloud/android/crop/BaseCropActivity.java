@@ -34,13 +34,15 @@ public abstract class BaseCropActivity extends Activity implements SetupFragment
         }
 
         cropConfig = CropConfig.from(getIntent());
-        onStartProcessing();
+        startProcessing();
         waitForLayout();
     }
 
     @Override
     public void onSetupStarted() {
-        onStartProcessing();
+        if (cropImageView.isEnabled()) {
+            startProcessing();
+        }
     }
 
     @Override
@@ -48,31 +50,26 @@ public abstract class BaseCropActivity extends Activity implements SetupFragment
         removeFragment(FRAGMENT_SETUP);
         this.sourceImage = sourceImage;
         this.previewImage = previewImage;
-        onFinishProcessing();
         startCrop();
+        stopProcessing(false);
     }
 
     @Override
     public void onSetupFailed(Exception error) {
-        removeFragment(FRAGMENT_SETUP);
-        onFinishProcessing();
-
-        final Intent data = new Intent();
-        data.putExtra(RESULT_EXTRA_ERROR, error);
-        setResult(RESULT_ERROR, data);
-
-        onShowError(error);
+        failure(error, FRAGMENT_SETUP);
     }
 
     @Override
     public void onSaveStarted() {
-        onStartProcessing();
+        if (cropImageView.isEnabled()) {
+            startProcessing();
+        }
     }
 
     @Override
     public void onSaveFinished() {
         removeFragment(FRAGMENT_SAVE);
-        onFinishProcessing();
+        stopProcessing(true);
 
         final Intent data = new Intent();
         data.setData(cropConfig.getOutputUri());
@@ -81,14 +78,7 @@ public abstract class BaseCropActivity extends Activity implements SetupFragment
 
     @Override
     public void onSaveFailed(Exception error) {
-        removeFragment(FRAGMENT_SAVE);
-        onFinishProcessing();
-
-        final Intent data = new Intent();
-        data.putExtra(RESULT_EXTRA_ERROR, error);
-        setResult(RESULT_ERROR, data);
-
-        onShowError(error);
+        failure(error, FRAGMENT_SAVE);
     }
 
     protected void onInitialLayoutFinished() {
@@ -187,5 +177,28 @@ public abstract class BaseCropActivity extends Activity implements SetupFragment
 
     private boolean isSaving() {
         return getFragmentManager().findFragmentByTag(FRAGMENT_SAVE) != null;
+    }
+
+    private void startProcessing() {
+        cropImageView.setEnabled(false);
+        onStartProcessing();
+    }
+
+    private void stopProcessing(boolean isDone) {
+        if (!isDone) {
+            cropImageView.setEnabled(true);
+        }
+        onFinishProcessing();
+    }
+
+    private void failure(Exception error, String fragmentTag) {
+        removeFragment(fragmentTag);
+        stopProcessing(true);
+
+        final Intent data = new Intent();
+        data.putExtra(RESULT_EXTRA_ERROR, error);
+        setResult(RESULT_ERROR, data);
+
+        onShowError(error);
     }
 }
