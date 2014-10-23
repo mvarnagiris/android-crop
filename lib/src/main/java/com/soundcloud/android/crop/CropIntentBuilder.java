@@ -21,7 +21,7 @@ public class CropIntentBuilder {
             throw new NullPointerException("Output uri cannot be null.");
         }
 
-        cropIntent = new Intent(context, CropActivity.class);
+        cropIntent = new Intent(context, CropImageActivity.class);
         cropIntent.setData(sourceUri);
         cropIntent.putExtra(MediaStore.EXTRA_OUTPUT, outputUri);
     }
