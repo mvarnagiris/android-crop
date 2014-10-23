@@ -15,7 +15,7 @@ public abstract class BaseCropActivity extends Activity implements SetupFragment
 
     private static final String FRAGMENT_SETUP = BaseCropActivity.class.getName() + "FRAGMENT_SETUP";
 
-    protected BaseCropImageView cropImageView;
+    protected CropImageView cropImageView;
 
     protected PreviewSize previewSize;
     protected SourceImage sourceImage;
@@ -60,7 +60,7 @@ public abstract class BaseCropActivity extends Activity implements SetupFragment
         startSetupIfNotStarted();
     }
 
-    protected abstract BaseCropImageView getCropImageView();
+    protected abstract CropImageView getCropImageView();
 
     protected abstract void onStartProcessing();
 
@@ -96,9 +96,8 @@ public abstract class BaseCropActivity extends Activity implements SetupFragment
         cropImageView.setPreviewImage(previewImage);
         cropImageView.center(true, true);
 
-        // TODO This is wrong. Highlight view should probably be withing BaseCropImageView.
-        ((CropImageView) cropImageView).setHighlightView(getHighlightView());
-        ((CropImageView) cropImageView).getHighlightView().setFocus(true);
+        cropImageView.setHighlightView(getHighlightView());
+        cropImageView.getHighlightView().setFocus(true);
     }
 
     private HighlightView getHighlightView() {

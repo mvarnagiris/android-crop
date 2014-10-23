@@ -11,8 +11,8 @@ public class CropActivity extends BaseCropActivity {
     }
 
     @Override
-    protected BaseCropImageView getCropImageView() {
-        return (BaseCropImageView) findViewById(R.id.crop_image);
+    protected CropImageView getCropImageView() {
+        return (CropImageView) findViewById(R.id.crop_image);
     }
 
     @Override
