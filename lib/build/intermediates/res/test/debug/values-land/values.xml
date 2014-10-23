@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-
-    <!-- From: file:/Users/akshay/Projects/Depop/android-crop/lib/build/intermediates/bundles/debug/res/values-land/values.xml -->
-    <eat-comment />
-
-    <dimen name="crop__bar_height">40dp</dimen>
-
-</resources>

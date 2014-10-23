@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <item android:id="@+id/action_select"
-        android:title="@string/action_select"
-        android:showAsAction="always" />
-
-</menu><!-- From: file:/Users/akshay/Projects/Depop/android-crop/example/src/main/res/menu/activity_main.xml -->
