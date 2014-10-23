@@ -9,8 +9,8 @@ public class Crop {
     private Crop() {
     }
 
-    public static CropIntentBuilder createIntentBuilder(Context context, Uri sourceUri) {
-        return new CropIntentBuilder(context, sourceUri);
+    public static CropIntentBuilder createIntentBuilder(Context context, Uri sourceUri, Uri outputUri) {
+        return new CropIntentBuilder(context, sourceUri, outputUri);
     }
 
     /**

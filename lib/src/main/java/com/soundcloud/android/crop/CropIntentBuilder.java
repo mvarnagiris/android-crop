@@ -8,7 +8,7 @@ import android.provider.MediaStore;
 public class CropIntentBuilder {
     private final Intent cropIntent;
 
-    public CropIntentBuilder(Context context, Uri sourceUri) {
+    public CropIntentBuilder(Context context, Uri sourceUri, Uri outputUri) {
         if (context == null) {
             throw new NullPointerException("Context cannot be null.");
         }
@@ -17,18 +17,13 @@ public class CropIntentBuilder {
             throw new NullPointerException("Source uri cannot be null.");
         }
 
+        if (outputUri == null) {
+            throw new NullPointerException("Output uri cannot be null.");
+        }
+
         cropIntent = new Intent(context, CropActivity.class);
         cropIntent.setData(sourceUri);
-    }
-
-    /**
-     * Set output URI where the cropped image will be saved
-     *
-     * @param outputUri Output image URI
-     */
-    public CropIntentBuilder output(Uri outputUri) {
         cropIntent.putExtra(MediaStore.EXTRA_OUTPUT, outputUri);
-        return this;
     }
 
     /**

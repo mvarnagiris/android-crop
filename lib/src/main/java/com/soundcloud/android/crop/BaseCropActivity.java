@@ -60,6 +60,10 @@ public abstract class BaseCropActivity extends Activity implements SetupFragment
         startSetupIfNotStarted();
     }
 
+    protected void save() {
+
+    }
+
     protected abstract CropImageView getCropImageView();
 
     protected abstract void onStartProcessing();
@@ -89,6 +93,8 @@ public abstract class BaseCropActivity extends Activity implements SetupFragment
         if (fragment == null) {
             fragment = SetupFragment.newInstance(previewSize);
             getFragmentManager().beginTransaction().add(fragment, FRAGMENT_SETUP).commit();
+        } else {
+            onFinishProcessing();
         }
     }
 
