@@ -96,7 +96,7 @@ public class SetupFragment extends Fragment {
 
         private void setup() throws Exception {
             sourceImage = new SourceImage(contentResolver, activityIntent);
-            previewImage = new PreviewImage(previewSize, sourceImage);
+            previewImage = new PreviewImage(contentResolver, previewSize, sourceImage);
         }
     }
 }

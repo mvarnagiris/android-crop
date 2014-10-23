@@ -1,6 +1,7 @@
 package com.soundcloud.android.crop;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.os.Build;
@@ -40,6 +41,7 @@ public abstract class BaseCropActivity extends Activity implements SetupFragment
 
     @Override
     public void onSetupFinished(SourceImage sourceImage, PreviewImage previewImage) {
+        removeSetupFragment();
         this.sourceImage = sourceImage;
         this.previewImage = previewImage;
         onFinishProcessing();
@@ -48,6 +50,7 @@ public abstract class BaseCropActivity extends Activity implements SetupFragment
 
     @Override
     public void onSetupFailed(Exception error) {
+        removeSetupFragment();
         onFinishProcessing();
         onShowError(error);
     }
@@ -90,7 +93,7 @@ public abstract class BaseCropActivity extends Activity implements SetupFragment
     }
 
     private void startCrop() {
-        cropImageView.setImageBitmap(previewImage.getBitmap());
+        cropImageView.setPreviewImage(previewImage);
         cropImageView.center(true, true);
 
         // TODO This is wrong. Highlight view should probably be withing BaseCropImageView.
@@ -123,8 +126,15 @@ public abstract class BaseCropActivity extends Activity implements SetupFragment
         int y = (height - cropHeight) / 2;
 
         final RectF cropRect = new RectF(x, y, x + cropWidth, y + cropHeight);
-        highlightView.setup(cropImageView.getUnrotatedPreviewMatrix(), imageRect, cropRect, aspectX != 0 && aspectY != 0);
+        highlightView.setup(previewImage.getUnrotatedPreviewMatrix(null), imageRect, cropRect, aspectX != 0 && aspectY != 0);
 
         return highlightView;
+    }
+
+    private void removeSetupFragment() {
+        final Fragment fragment = getFragmentManager().findFragmentByTag(FRAGMENT_SETUP);
+        if (fragment != null) {
+            getFragmentManager().beginTransaction().remove(fragment).commit();
+        }
     }
 }

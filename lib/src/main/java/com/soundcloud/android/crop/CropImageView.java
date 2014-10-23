@@ -2,6 +2,7 @@ package com.soundcloud.android.crop;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Matrix;
 import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -26,50 +27,19 @@ public class CropImageView extends BaseCropImageView {
     }
 
     @Override
+    public void onPreviewImageChanged(Matrix matrix) {
+        super.onPreviewImageChanged(matrix);
+        updateHighlightViewMatrix();
+    }
+
+    @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
-        if (previewBitmap.getBitmap() != null && highlightView != null) {
-            highlightView.matrix.set(getUnrotatedPreviewMatrix());
-            highlightView.invalidate();
+        if (previewImage != null && highlightView != null) {
+            updateHighlightViewMatrix();
             if (highlightView.hasFocus()) {
                 centerBasedOnHighlightView(highlightView);
             }
-        }
-    }
-
-    @Override
-    protected void zoomTo(float scale, float centerX, float centerY) {
-        super.zoomTo(scale, centerX, centerY);
-        if (highlightView != null) {
-            highlightView.matrix.set(getUnrotatedPreviewMatrix());
-            highlightView.invalidate();
-        }
-    }
-
-    @Override
-    protected void zoomIn() {
-        super.zoomIn();
-        if (highlightView != null) {
-            highlightView.matrix.set(getUnrotatedPreviewMatrix());
-            highlightView.invalidate();
-        }
-    }
-
-    @Override
-    protected void zoomOut() {
-        super.zoomOut();
-        if (highlightView != null) {
-            highlightView.matrix.set(getUnrotatedPreviewMatrix());
-            highlightView.invalidate();
-        }
-    }
-
-    @Override
-    protected void postTranslate(float deltaX, float deltaY) {
-        super.postTranslate(deltaX, deltaY);
-        if (highlightView != null) {
-            highlightView.matrix.postTranslate(deltaX, deltaY);
-            highlightView.invalidate();
         }
     }
 
@@ -106,9 +76,9 @@ public class CropImageView extends BaseCropImageView {
                     ensureVisible(highlightView);
                 }
 
-                // Ff we're not zoomed then there's no point in even allowing the user to move the
+                // If we're not zoomed then there's no point in even allowing the user to move the
                 // image around. This call to center puts it back to the normalized location.
-                if (getScale() == 1F) {
+                if (previewImage != null && previewImage.getScale() == 1F) {
                     center(true, true);
                 }
                 break;
@@ -148,13 +118,13 @@ public class CropImageView extends BaseCropImageView {
         final float z2 = getMeasuredHeight() / height * 0.6f;
 
         float zoom = Math.min(z1, z2);
-        zoom = zoom * this.getScale();
+        zoom = zoom * previewImage.getScale();
         zoom = Math.max(1f, zoom);
 
-        if ((Math.abs(zoom - getScale()) / zoom) > .1) {
+        if ((Math.abs(zoom - previewImage.getScale()) / zoom) > .1) {
             float[] coordinates = new float[]{hv.cropRect.centerX(), hv.cropRect.centerY()};
-            getUnrotatedPreviewMatrix().mapPoints(coordinates);
-            zoomTo(zoom, coordinates[0], coordinates[1], 300F);
+            previewImage.getUnrotatedPreviewMatrix(null).mapPoints(coordinates);
+            zoomTo(zoom, coordinates[0], coordinates[1], 300f);
         }
 
         ensureVisible(hv);
@@ -177,6 +147,13 @@ public class CropImageView extends BaseCropImageView {
 
         if (panDeltaX != 0 || panDeltaY != 0) {
             panBy(panDeltaX, panDeltaY);
+        }
+    }
+
+    private void updateHighlightViewMatrix() {
+        if (highlightView != null) {
+            highlightView.matrix.set(previewImage.getUnrotatedPreviewMatrix(highlightView.matrix));
+            highlightView.invalidate();
         }
     }
 }

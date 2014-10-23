@@ -5,25 +5,17 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Parcel;
 
 import java.io.InputStream;
 
 class SourceImage {
-    private final ContentResolver contentResolver;
     private final Uri uri;
-    private final Integer exifRotation;
+    private final int exifRotation;
+    private final int width;
+    private final int height;
 
-    public SourceImage(ContentResolver contentResolver, Intent intent) {
-        if (contentResolver == null) {
-            throw new NullPointerException("Content resolver cannot be null.");
-        }
-
-        this.contentResolver = contentResolver;
-
-        if (intent == null) {
-            throw new NullPointerException("Intent cannot be null.");
-        }
-
+    public SourceImage(ContentResolver contentResolver, Intent intent) throws Exception {
         uri = intent.getData();
 
         if (uri == null) {
@@ -31,13 +23,34 @@ class SourceImage {
         }
 
         exifRotation = CropUtil.getExifRotation(CropUtil.getFromMediaUri(contentResolver, uri));
+
+        final BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        decodeBitmap(contentResolver, options);
+        width = options.outWidth;
+        height = options.outHeight;
+    }
+
+    private SourceImage(Parcel in) {
+        uri = in.readParcelable(Uri.class.getClassLoader());
+        exifRotation = in.readInt();
+        width = in.readInt();
+        height = in.readInt();
     }
 
     public int getExifRotation() {
         return exifRotation;
     }
 
-    public Bitmap decodeBitmap(BitmapFactory.Options options) throws Exception {
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public Bitmap decodeBitmap(ContentResolver contentResolver, BitmapFactory.Options options) throws Exception {
         InputStream is = null;
         try {
             is = contentResolver.openInputStream(uri);
