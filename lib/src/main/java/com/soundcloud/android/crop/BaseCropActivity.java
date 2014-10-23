@@ -2,24 +2,27 @@ package com.soundcloud.android.crop;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Intent;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.ViewTreeObserver;
 
-public abstract class BaseCropActivity extends Activity implements SetupFragment.SetupListener {
+public abstract class BaseCropActivity extends Activity implements SetupFragment.SetupListener, SaveFragment.SaveListener {
     public static final int RESULT_ERROR = 827473;
 
     public static final String RESULT_EXTRA_ERROR = BaseCropActivity.class.getName() + ".RESULT_EXTRA_ERROR";
 
     private static final String FRAGMENT_SETUP = BaseCropActivity.class.getName() + "FRAGMENT_SETUP";
+    private static final String FRAGMENT_SAVE = BaseCropActivity.class.getName() + "FRAGMENT_SAVE";
 
     protected CropImageView cropImageView;
 
     protected PreviewSize previewSize;
     protected SourceImage sourceImage;
     protected PreviewImage previewImage;
+    protected CropConfig cropConfig;
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
@@ -30,6 +33,7 @@ public abstract class BaseCropActivity extends Activity implements SetupFragment
             throw new NullPointerException("Crop image view cannot be null.");
         }
 
+        cropConfig = CropConfig.from(getIntent());
         onStartProcessing();
         waitForLayout();
     }
@@ -41,7 +45,7 @@ public abstract class BaseCropActivity extends Activity implements SetupFragment
 
     @Override
     public void onSetupFinished(SourceImage sourceImage, PreviewImage previewImage) {
-        removeSetupFragment();
+        removeFragment(FRAGMENT_SETUP);
         this.sourceImage = sourceImage;
         this.previewImage = previewImage;
         onFinishProcessing();
@@ -50,8 +54,40 @@ public abstract class BaseCropActivity extends Activity implements SetupFragment
 
     @Override
     public void onSetupFailed(Exception error) {
-        removeSetupFragment();
+        removeFragment(FRAGMENT_SETUP);
         onFinishProcessing();
+
+        final Intent data = new Intent();
+        data.putExtra(RESULT_EXTRA_ERROR, error);
+        setResult(RESULT_ERROR, data);
+
+        onShowError(error);
+    }
+
+    @Override
+    public void onSaveStarted() {
+        onStartProcessing();
+    }
+
+    @Override
+    public void onSaveFinished() {
+        removeFragment(FRAGMENT_SAVE);
+        onFinishProcessing();
+
+        final Intent data = new Intent();
+        data.setData(cropConfig.getOutputUri());
+        setResult(RESULT_OK, data);
+    }
+
+    @Override
+    public void onSaveFailed(Exception error) {
+        removeFragment(FRAGMENT_SAVE);
+        onFinishProcessing();
+
+        final Intent data = new Intent();
+        data.putExtra(RESULT_EXTRA_ERROR, error);
+        setResult(RESULT_ERROR, data);
+
         onShowError(error);
     }
 
@@ -61,7 +97,14 @@ public abstract class BaseCropActivity extends Activity implements SetupFragment
     }
 
     protected void save() {
+        if (isSaving()) {
+            return;
+        }
 
+        final Rect cropRect = cropImageView.getHighlightView().getScaledCropRect(previewImage.getSampleSize());
+        cropImageView.setPreviewImage(null);
+        final SaveFragment fragment = SaveFragment.newInstance(sourceImage, cropConfig, cropRect);
+        getFragmentManager().beginTransaction().add(fragment, FRAGMENT_SETUP).commit();
     }
 
     protected abstract CropImageView getCropImageView();
@@ -116,7 +159,6 @@ public abstract class BaseCropActivity extends Activity implements SetupFragment
         //noinspection SuspiciousNameCombination
         int cropHeight = cropWidth;
 
-        final CropConfig cropConfig = CropConfig.from(getIntent());
         final int aspectX = cropConfig.getAspectX();
         final int aspectY = cropConfig.getAspectY();
         if (aspectX != 0 && aspectY != 0) {
@@ -136,10 +178,14 @@ public abstract class BaseCropActivity extends Activity implements SetupFragment
         return highlightView;
     }
 
-    private void removeSetupFragment() {
-        final Fragment fragment = getFragmentManager().findFragmentByTag(FRAGMENT_SETUP);
+    private void removeFragment(String tag) {
+        final Fragment fragment = getFragmentManager().findFragmentByTag(tag);
         if (fragment != null) {
             getFragmentManager().beginTransaction().remove(fragment).commit();
         }
+    }
+
+    private boolean isSaving() {
+        return getFragmentManager().findFragmentByTag(FRAGMENT_SAVE) != null;
     }
 }

@@ -13,13 +13,14 @@ class PreviewImage {
     private final Matrix transformationMatrix = new Matrix();
     private final Matrix previewMatrix = new Matrix();
     private final float[] matrixBuffer = new float[9];
+    private final int sampleSize;
 
     private PreviewImageListener listener;
 
     public PreviewImage(ContentResolver contentResolver, PreviewSize previewSize, SourceImage sourceImage) throws Exception {
         this.previewSize = previewSize;
 
-        final int sampleSize = calculateSampleSize(previewSize, sourceImage);
+        sampleSize = calculateSampleSize(previewSize, sourceImage);
         final BitmapFactory.Options options = new BitmapFactory.Options();
         options.inSampleSize = sampleSize;
         final Bitmap tempBitmap = sourceImage.decodeBitmap(contentResolver, options);
@@ -39,6 +40,10 @@ class PreviewImage {
 
     public int getHeight() {
         return rotateBitmap.getHeight();
+    }
+
+    public int getSampleSize() {
+        return sampleSize;
     }
 
     public void setListener(PreviewImageListener listener) {

@@ -4,12 +4,27 @@ import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.BitmapRegionDecoder;
+import android.graphics.Matrix;
+import android.graphics.Rect;
+import android.graphics.RectF;
 import android.net.Uri;
 import android.os.Parcel;
+import android.os.Parcelable;
 
 import java.io.InputStream;
 
-class SourceImage {
+class SourceImage implements Parcelable {
+    public static final Parcelable.Creator<SourceImage> CREATOR = new Parcelable.Creator<SourceImage>() {
+        public SourceImage createFromParcel(Parcel in) {
+            return new SourceImage(in);
+        }
+
+        public SourceImage[] newArray(int size) {
+            return new SourceImage[size];
+        }
+    };
+
     private final Uri uri;
     private final int exifRotation;
     private final int width;
@@ -38,6 +53,23 @@ class SourceImage {
         height = in.readInt();
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeParcelable(uri, flags);
+        dest.writeInt(exifRotation);
+        dest.writeInt(width);
+        dest.writeInt(height);
+    }
+
+    public Uri getUri() {
+        return uri;
+    }
+
     public int getExifRotation() {
         return exifRotation;
     }
@@ -59,6 +91,35 @@ class SourceImage {
             throw new Exception(e.getMessage());
         } finally {
             CropUtil.closeSilently(is);
+        }
+    }
+
+    public Bitmap decodeRegion(ContentResolver contentResolver, Rect cropRect) throws Exception {
+        InputStream inputStream = null;
+        try {
+            inputStream = contentResolver.openInputStream(uri);
+            final BitmapRegionDecoder decoder = BitmapRegionDecoder.newInstance(inputStream, false);
+            final int width = decoder.getWidth();
+            final int height = decoder.getHeight();
+
+            if (exifRotation != 0) {
+                // Adjust crop area to account for image rotation
+                Matrix matrix = new Matrix();
+                matrix.setRotate(-exifRotation);
+
+                RectF adjusted = new RectF();
+                matrix.mapRect(adjusted, new RectF(cropRect));
+
+                // Adjust to account for origin at 0,0
+                adjusted.offset(adjusted.left < 0 ? width : 0, adjusted.top < 0 ? height : 0);
+                cropRect = new Rect((int) adjusted.left, (int) adjusted.top, (int) adjusted.right, (int) adjusted.bottom);
+            }
+
+            return decoder.decodeRegion(cropRect, new BitmapFactory.Options());
+        } catch (OutOfMemoryError e) {
+            throw new Exception(e.getMessage());
+        } finally {
+            CropUtil.closeSilently(inputStream);
         }
     }
 }

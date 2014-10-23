@@ -3,7 +3,6 @@ package com.soundcloud.android.crop;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.provider.MediaStore;
 
 public class Crop {
     private Crop() {
@@ -19,7 +18,7 @@ public class Crop {
      * @param result Output Image URI
      */
     public static Uri getOutput(Intent result) {
-        return result.getParcelableExtra(MediaStore.EXTRA_OUTPUT);
+        return result.getData();
     }
 
     /**
