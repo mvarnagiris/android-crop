@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<pre-dex-items>
-
-    <item
-        dex="C:\Developer\git\android-crop\example\build\intermediates\pre-dexed\debug\classes-8053c32d4e3ae920ee299b49f2d5d001408f657b.jar"
-        jar="C:\Developer\git\android-crop\example\build\intermediates\exploded-aar\com.soundcloud.android\lib\0.9.10\classes.jar"
-        jumboMode="false" revision="21.0.2" sha1="00abe81b66d11cf168df9fd7323db4b5d9d9aca5" />
-
-</pre-dex-items>

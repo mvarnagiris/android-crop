@@ -131,6 +131,7 @@ public class CropImageView extends ImageView implements PreviewImage.PreviewImag
 
     public void setPreviewImage(PreviewImage previewImage) {
         if (previewImage == null) {
+            super.setImageBitmap(null);
             recycleOldBitmap(null);
             this.previewImage = null;
             return;
