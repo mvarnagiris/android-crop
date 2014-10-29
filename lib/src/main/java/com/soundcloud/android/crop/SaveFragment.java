@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.content.ContentResolver;
 import android.graphics.Bitmap;
+import android.graphics.Matrix;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.os.AsyncTask;
@@ -14,6 +15,8 @@ import java.io.OutputStream;
 
 public class SaveFragment extends Fragment {
     private static final String ARG_SOURCE_IMAGE = "ARG_SOURCE_IMAGE";
+    private static final String ARG_ROTATE_MATRIX = "ARG_ROTATE_MATRIX";
+    private static final String ARG_ROTATION = "ARG_ROTATION";
     private static final String ARG_CROP_CONFIG = "ARG_CROP_CONFIG";
     private static final String ARG_CROP_RECT = "ARG_CROP_RECT";
 
@@ -22,10 +25,16 @@ public class SaveFragment extends Fragment {
     private CropConfig cropConfig;
     private Rect cropRect;
     private ContentResolver contentResolver;
+    private Matrix rotateMatrix;
+    private int rotation;
 
-    public static SaveFragment newInstance(SourceImage sourceImage, CropConfig cropConfig, Rect cropRect) {
+    public static SaveFragment newInstance(SourceImage sourceImage, Matrix rotateMatrix, int rotation, CropConfig cropConfig, Rect cropRect) {
         final Bundle args = new Bundle();
         args.putParcelable(ARG_SOURCE_IMAGE, sourceImage);
+        final float[] values = new float[9];
+        rotateMatrix.getValues(values);
+        args.putFloatArray(ARG_ROTATE_MATRIX, values);
+        args.putInt(ARG_ROTATION, rotation);
         args.putParcelable(ARG_CROP_CONFIG, cropConfig);
         args.putParcelable(ARG_CROP_RECT, cropRect);
 
@@ -53,6 +62,9 @@ public class SaveFragment extends Fragment {
         cropConfig = getArguments().getParcelable(ARG_CROP_CONFIG);
         cropRect = getArguments().getParcelable(ARG_CROP_RECT);
         contentResolver = getActivity().getContentResolver();
+        rotateMatrix = new Matrix();
+        rotateMatrix.setValues(getArguments().getFloatArray(ARG_ROTATE_MATRIX));
+        rotation = getArguments().getInt(ARG_ROTATION);
 
         new SaveTask().execute();
     }
@@ -110,6 +122,7 @@ public class SaveFragment extends Fragment {
 
             Bitmap croppedImage = sourceImage.decodeRegion(contentResolver, cropRect, outWidth, outHeight);
             croppedImage = resizeImage(croppedImage, outWidth, outHeight);
+            croppedImage = rotateImageIfNecessary(croppedImage);
             saveImage(croppedImage);
         }
 
@@ -148,6 +161,24 @@ public class SaveFragment extends Fragment {
 
             if (newBitmap != croppedImage) {
                 croppedImage.recycle();
+            }
+            return newBitmap;
+        }
+
+        private Bitmap rotateImageIfNecessary(Bitmap bitmap) throws Exception {
+            if (bitmap == null || !(rotation == 90 || rotation == 180)) {
+                return bitmap;
+            }
+
+            final Bitmap newBitmap;
+            try {
+                newBitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getHeight(), bitmap.getWidth(), rotateMatrix, false);
+            } catch (OutOfMemoryError error) {
+                throw new Exception("Out of memory.");
+            }
+
+            if (newBitmap != bitmap) {
+                bitmap.recycle();
             }
             return newBitmap;
         }

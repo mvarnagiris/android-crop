@@ -30,6 +30,10 @@ class PreviewImage {
         calculateBaseMatrix(true, baseMatrix);
     }
 
+    public RotateBitmap getRotateBitmap() {
+        return rotateBitmap;
+    }
+
     public Bitmap getBitmap() {
         return rotateBitmap.getBitmap();
     }

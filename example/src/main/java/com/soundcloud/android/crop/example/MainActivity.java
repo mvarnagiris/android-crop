@@ -3,11 +3,13 @@ package com.soundcloud.android.crop.example;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.graphics.Point;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Parcelable;
 import android.provider.MediaStore;
+import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
@@ -67,7 +69,11 @@ public class MainActivity extends Activity {
 
     private void beginCrop(Uri sourceUri) {
         Uri outputUri = Uri.fromFile(new File(getCacheDir(), "cropped"));
-        final Intent intent = Crop.createIntentBuilder(this, sourceUri, outputUri).asSquare().withMaxSize(100, 100).build();
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        int width = size.x;
+        final Intent intent = Crop.createIntentBuilder(this, sourceUri, outputUri).asSquare().withMaxSize(width, width).build();
         startActivityForResult(intent, REQUEST_CROP);
     }
 
