@@ -194,7 +194,7 @@ class PreviewImage {
             final int halfWidth = width / 2;
 
             while ((halfHeight / inSampleSize) > viewHeight && (halfWidth / inSampleSize) > viewWidth) {
-                inSampleSize++;
+                inSampleSize *= 2;
             }
         }
 

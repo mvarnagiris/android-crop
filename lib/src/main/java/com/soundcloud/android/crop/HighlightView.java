@@ -51,23 +51,16 @@ class HighlightView {
     private static final int DEFAULT_HIGHLIGHT_COLOR = 0xFF33B5E5;
     private static final float HANDLE_RADIUS_DP = 12f;
     private static final float OUTLINE_DP = 2f;
-
-    enum ModifyMode { None, Move, Grow }
-    enum HandleMode { Changing, Always, Never }
-
+    private final Paint outsidePaint = new Paint();
+    private final Paint outlinePaint = new Paint();
+    private final Paint handlePaint = new Paint();
     RectF cropRect; // Image space
     Rect drawRect; // Screen space
     Matrix matrix;
     private RectF imageRect; // Image space
-
-    private final Paint outsidePaint = new Paint();
-    private final Paint outlinePaint = new Paint();
-    private final Paint handlePaint = new Paint();
-
     private View viewContext; // View displaying image
     private boolean showThirds;
     private int highlightColor;
-
     private ModifyMode modifyMode = ModifyMode.None;
     private HandleMode handleMode = HandleMode.Changing;
     private boolean maintainAspectRatio;
@@ -177,7 +170,7 @@ class HighlightView {
         if (Build.VERSION.SDK_INT == Build.VERSION_CODES.JELLY_BEAN_MR1) {
             return false;
         } else if ((Build.VERSION.SDK_INT < Build.VERSION_CODES.ICE_CREAM_SANDWICH)
-            || Build.VERSION.SDK_INT > Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1) {
+                || Build.VERSION.SDK_INT > Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1) {
             return true;
         } else {
             return !canvas.isHardwareAccelerated();
@@ -185,7 +178,7 @@ class HighlightView {
     }
 
     private void drawHandles(Canvas canvas) {
-        int xMiddle = drawRect.left + ((drawRect.right  - drawRect.left) / 2);
+        int xMiddle = drawRect.left + ((drawRect.right - drawRect.left) / 2);
         int yMiddle = drawRect.top + ((drawRect.bottom - drawRect.top) / 2);
 
         canvas.drawCircle(drawRect.left, yMiddle, handleRadius, handlePaint);
@@ -198,7 +191,7 @@ class HighlightView {
         outlinePaint.setStrokeWidth(1);
         float xThird = (drawRect.right - drawRect.left) / 3;
         float yThird = (drawRect.bottom - drawRect.top) / 3;
-        
+
         canvas.drawLine(drawRect.left + xThird, drawRect.top,
                 drawRect.left + xThird, drawRect.bottom, outlinePaint);
         canvas.drawLine(drawRect.left + xThird * 2, drawRect.top,
@@ -230,16 +223,16 @@ class HighlightView {
                 && (x < r.right + hysteresis);
 
         // Check whether the position is near some edge(s)
-        if ((Math.abs(r.left - x)     < hysteresis)  &&  verticalCheck) {
+        if ((Math.abs(r.left - x) < hysteresis) && verticalCheck) {
             retval |= GROW_LEFT_EDGE;
         }
-        if ((Math.abs(r.right - x)    < hysteresis)  &&  verticalCheck) {
+        if ((Math.abs(r.right - x) < hysteresis) && verticalCheck) {
             retval |= GROW_RIGHT_EDGE;
         }
-        if ((Math.abs(r.top - y)      < hysteresis)  &&  horizCheck) {
+        if ((Math.abs(r.top - y) < hysteresis) && horizCheck) {
             retval |= GROW_TOP_EDGE;
         }
-        if ((Math.abs(r.bottom - y)   < hysteresis)  &&  horizCheck) {
+        if ((Math.abs(r.bottom - y) < hysteresis) && horizCheck) {
             retval |= GROW_BOTTOM_EDGE;
         }
 
@@ -257,7 +250,7 @@ class HighlightView {
         if (edge == MOVE) {
             // Convert to image space before sending to moveBy()
             moveBy(dx * (cropRect.width() / r.width()),
-                   dy * (cropRect.height() / r.height()));
+                    dy * (cropRect.height() / r.height()));
         } else {
             if (((GROW_LEFT_EDGE | GROW_RIGHT_EDGE) & edge) == 0) {
                 dx = 0;
@@ -284,10 +277,10 @@ class HighlightView {
         // Put the cropping rectangle inside image rectangle
         cropRect.offset(
                 Math.max(0, imageRect.left - cropRect.left),
-                Math.max(0, imageRect.top  - cropRect.top));
+                Math.max(0, imageRect.top - cropRect.top));
 
         cropRect.offset(
-                Math.min(0, imageRect.right  - cropRect.right),
+                Math.min(0, imageRect.right - cropRect.right),
                 Math.min(0, imageRect.bottom - cropRect.bottom));
 
         drawRect = computeLayout();
@@ -363,10 +356,10 @@ class HighlightView {
     // Maps the cropping rectangle from image space to screen space
     private Rect computeLayout() {
         RectF r = new RectF(cropRect.left, cropRect.top,
-                            cropRect.right, cropRect.bottom);
+                cropRect.right, cropRect.bottom);
         matrix.mapRect(r);
         return new Rect(Math.round(r.left), Math.round(r.top),
-                        Math.round(r.right), Math.round(r.bottom));
+                Math.round(r.right), Math.round(r.bottom));
     }
 
     public void invalidate() {
@@ -380,5 +373,9 @@ class HighlightView {
     public void setFocus(boolean isFocused) {
         this.isFocused = isFocused;
     }
+
+    enum ModifyMode {None, Move, Grow}
+
+    enum HandleMode {Changing, Always, Never}
 
 }
