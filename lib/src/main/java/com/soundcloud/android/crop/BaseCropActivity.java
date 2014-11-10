@@ -91,7 +91,9 @@ public abstract class BaseCropActivity extends Activity implements SetupFragment
             return;
         }
 
-        final Rect cropRect = cropImageView.getHighlightView().getScaledCropRect(previewImage.getSampleSize());
+        final int sampleSize = previewImage.getSampleSize();
+        final HighlightView highlightView = cropImageView.getHighlightView();
+        final Rect cropRect = highlightView.getScaledCropRect(sampleSize);
         cropImageView.setPreviewImage(null);
         final SaveFragment fragment = SaveFragment.newInstance(sourceImage, previewImage.getRotateBitmap().getRotateMatrix(), previewImage.getRotateBitmap().getRotation(), cropConfig, cropRect);
         getFragmentManager().beginTransaction().add(fragment, FRAGMENT_SETUP).commit();
