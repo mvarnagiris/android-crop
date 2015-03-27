@@ -87,7 +87,7 @@ public abstract class BaseCropActivity extends Activity implements SetupFragment
     }
 
     protected void save() {
-        if (isSaving()) {
+        if (isSaving() || !cropImageView.isEnabled()) {
             return;
         }
 
